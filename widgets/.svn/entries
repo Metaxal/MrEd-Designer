@@ -1,0 +1,149 @@
+10
+
+dir
+122
+https://svn.origo.ethz.ch/mred-designer/widgets
+https://svn.origo.ethz.ch/mred-designer
+
+
+
+2012-04-18T17:38:19.317789Z
+122
+monstermutt
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+bdd5a153-80d6-45cf-a035-44cca215dcae
+
+group-box-panel
+dir
+
+combo-field
+dir
+
+slider
+dir
+
+pane
+dir
+
+message
+dir
+
+radio-box
+dir
+
+horizontal-panel
+dir
+
+gauge
+dir
+
+frame
+dir
+
+choice
+dir
+
+vertical-pane
+dir
+
+separator-menu-item
+dir
+
+editor-canvas
+dir
+
+dialog
+dir
+
+panel
+dir
+
+menu-item
+dir
+
+grow-box-spacer-pane
+dir
+
+list-box
+dir
+
+check-box
+dir
+
+tab-panel
+dir
+
+menu
+dir
+
+loading-preferences.ssd
+file
+
+
+
+
+2012-04-18T17:01:08.368412Z
+88e3bbad4615a6c7013751398a5705ee
+2012-04-18T16:49:26.044384Z
+121
+monstermutt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+711
+
+text-field
+dir
+
+menu-bar
+dir
+
+project
+dir
+
+tab
+dir
+
+vertical-panel
+dir
+
+horizontal-pane
+dir
+
+canvas
+dir
+
+button
+dir
+

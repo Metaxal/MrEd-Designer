@@ -1,0 +1,161 @@
+Version 3.8
+  Laurent Orseau, 2012-02-04
+- added: can now take projects as command line arguments
+  Ex: gracket main.ss my-project.med
+- fixed: tab-panel child selection bug when empty child list
+
+  Fixes by Kieron Hardy:
+- fixed: tooltip.ss was not always removing tooltip on windows
+- fixed: mreddesigner.bat : small DOS issues
+
+
+Version 3.7
+  Laurent Orseau, 2010-07-26
+- changed: images (files) are *always* relative to project base directory,
+  except if the project has never been saved.
+- added: runtime-paths? property for projects: if checked, all files (like images) 
+  in the generated code are defined as runtime-paths.
+- added: images are loaded with 'unknown/mask for transparency on buttons and messages
+- changed: ids are not provided by default, except for frames and dialogs
+
+Version 3.6
+  Laurent Orseau, 2010-07-21
+- added: code-gen-class property: the class name can also be a keyword argument 
+  of the init function in the generated code
+- added: false-or-number. x, y, width, height can take either the value false
+  or be a number, as they should.
+- removed: moving the frame/dialog changes x and y, widht and height
+  (was more annoying than anything).
+- changed: load-preferences.ss -> .ssd to avoid planet inject warnings
+
+Version 3.5
+  Laurent Orseau, 2010-07-16
+- fixed: moving carret in property text-fields
+- fixed: bug of text-field-number (validation is now done on pressing update)
+
+Version 3.4
+  Laurent Orseau, 2010-06-20
+- hidden windows are not shown back when recreated
+- added show/hide button 
+- untouched new project are not displayed as modified (and don't ask for saving)
+
+Version 3.3
+  Laurent Orseau, 2010-06-19
+- added template: login/password dialog 
+- added "show-at-init" option in frames and dialogs
+- added post-code for plugins
+- fixed: top level sub-windows are really destroyed
+- fixed: windows are hidden until completely created
+- MODIFIED: "generate file as..." menu item + "To <project-id>.ss" button
+  instead of asking each time where to write
+
+Version 3.2
+  Laurent Orseau, 2010-04-06
+- Fixed non-provided init function name
+
+Version 3.1
+  Laurent Orseau, 2010-03-23
+- Font editor uses get-font-from user
+- Fixed bugs in loading projects
+
+Version 3.0
+  Laurent Orseau, March 1st 2010
+- Almost complete rewrite of the code
+- Generic way to edit properties (even for styles and fonts)
+- The mred-id% object represents the abstraction of one widget
+- Generic way to add widgets, using a plugin system
+  It is almost easy to create a new widget plugin.
+- Added templates: a widget + children can be saved to a template and inserted
+  anywhere else
+  (copy/paste and projects files use templates)
+  - Generic way to write the constructor code of an object
+    (fields can be aselected, or default behavior overriden)
+- Every property can be an option of the generated code
+- Added widgets: menus, dialog, combo-field
+- check-boxes and buttons can have images as label
+- Fixed grow-spacer-box-panel
+- The hierarchy frame now uses a hierarchy-list%
+- Can edit several projects at the same time.
+  (a project can even be loaded several times)
+- Lost features: 
+    - callback graph editor
+    - class options in the generated code
+    - move-one-up and down, but can use cut/paste
+    - copy without children
+    - generate only required code 
+     (because widgets may have different default values than the MrEd ones)
+    
+
+Version 2.2
+  Laurent Orseau, January 10th 2010
+- code generation creates a module that can be required as an external module
+- evaluating the generated module does not initialize the frames and does not show them;
+  One must call something like (my-project-init), with the desired options
+- callbacks and classes are options of the initialization method,
+  so that the application is fully parameterizable, and the file itself
+  does not (or less) need by-hand modifications. Suche things can be done in a separate file.
+- the gui variables are `provide'd so that they can be used from the outside
+- changed default option in code generation to "only required"
+- toolbox-frame is now the parent frame of hierarchy-frame, property-frame, and callback-graph-frame,
+  so that (on Vista at least) there is only one tab in the OS app bar, and all frames are 
+  minimized and unminimized at once with the toolbox
+- in default-values.ss:
+    * changed all the "special classes" to use a mred-id%% mixin
+    * changed module language to scheme
+    * changed hash-tables to hashes
+    * all default-preview and default-values are stored in an hash (toward a plugin architecture)
+
+
+Version 2.1.3
+- tooltips are added to main buttons
+- fixed the no-border style for tab-panels
+
+Version 2.1.2
+- fixed a bug with widget cutting and pasting
+- tab-panels are working properly
+
+Version 2.1.1
+- modified way how to react on the clicking in the preview window
+
+Version 2.1
+- new callback handling is added
+- the id of a widget can be changed, except the root "project"
+- Now it remembers whether a frame was closed down so it does not 
+  pop-up when doing full preview
+- in the graph editor window the list-box is resizable
+- special callbacks are created for radio-box, check-box, choice and
+  slider, so by clicking in the preview the selection will be reflected 
+  in the property window
+
+
+Version 2.0
+- new hierarchy widget, like a new widget type with separate internal data
+- simplified and reorganised code for hierarchy widget and preview
+- new type of property widget, specially derived classes
+- style properties are handled separately by pull-down widgets
+- when generating Scheme code, it can write max or min code
+- Copy, Cut and Paste is implemented
+- by clicking on a widget in the preview, the properties window will show
+  the properties of the clicked widget
+- keyboard events are added to the hierarchy window,
+  Del, Ctrl+C, Ctrl+X, Ctrl+V, Shift+Up, Shift+Down
+
+
+Version 1.1.1
+- The position and size of the preview is also stored and restored
+  17th April, 2006, Peter Ivanyi
+- The GUI and functionality are separated for hierarchy
+  17th April, 2006, Peter Ivanyi
+
+
+Version 1.1
+- Hierarchy handling has been improved
+  9th April, 2006, Peter Ivanyi
+- Updated for PLT-Scheme v.300
+  2nd April, 2006, Peter Ivanyi
+
+
+Version 1.0
+- Initial release
+  2004, Lozi Jean-Pierre
+

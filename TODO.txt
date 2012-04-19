@@ -1,0 +1,11 @@
+- images should be relative to project path 
+  simply ask for "relative?" at image loading
+  (search for find-relative-path in controller.ss
+  and modify pwig:file% in property-widgets.ss)
+- "paste before", "paste after" : avoids recreating the whole thing for each move
+- widget: array/grid panel
+- widget: board canvas
+- widget: columns-box% from Towers
+- doc: add doc for 'post-code' (plugins) and 'show-at-init' and 'code-gen-class'
+
+- change name to GRacket Designer ??

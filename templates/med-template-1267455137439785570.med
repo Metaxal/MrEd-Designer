@@ -1,0 +1,1210 @@
+"menu-bar: file edit help"
+(list
+ (cons 'name "menu-bar: file edit help")
+ (cons 'parent-class frame%)
+ (cons 'code 
+       (lambda (parent-104839)
+  (let* ((code-104841 parent-104839)
+         (code-104843
+          (new prop:atom% (value 'menu-bar-99582)))
+         (code-104842
+          (new
+           prop:field-id%
+           (value code-104843)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104845
+          (new
+           prop:code%
+           (value (lambda (m) (void)))
+           (value-code '(lambda (m) (void)))))
+         (code-104844
+          (new
+           prop:field-id%
+           (value code-104845)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104840
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-bar))
+           (mred-parent code-104841)
+           (properties
+            (list
+             (cons 'id code-104842)
+             (cons 'demand-callback code-104844)))))
+         (code-104848
+          (new prop:atom% (value 'menu-file)))
+         (code-104847
+          (new
+           prop:field-id%
+           (value code-104848)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104850 (new prop:atom% (value '"&File")))
+         (code-104849
+          (new
+           prop:field-id%
+           (value code-104850)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104852 (new prop:atom% (value '"File")))
+         (code-104851
+          (new
+           prop:field-id%
+           (value code-104852)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104854
+          (new
+           prop:code%
+           (value (lambda (m) (void)))
+           (value-code '(lambda (m) (void)))))
+         (code-104853
+          (new
+           prop:field-id%
+           (value code-104854)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104846
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu))
+           (mred-parent code-104840)
+           (properties
+            (list
+             (cons 'id code-104847)
+             (cons 'label code-104849)
+             (cons 'help-string code-104851)
+             (cons 'demand-callback code-104853)))))
+         (code-104857
+          (new prop:atom% (value 'menu-item-open)))
+         (code-104856
+          (new
+           prop:field-id%
+           (value code-104857)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104859
+          (new prop:atom% (value '"&Open...")))
+         (code-104858
+          (new
+           prop:field-id%
+           (value code-104859)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104861
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104860
+          (new
+           prop:field-id%
+           (value code-104861)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104863 (shortcut-values '#\O))
+         (code-104862
+          (new
+           prop:field-id%
+           (value code-104863)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104865 (new prop:atom% (value '"Open")))
+         (code-104864
+          (new
+           prop:field-id%
+           (value code-104865)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104867
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104866
+          (new
+           prop:field-id%
+           (value code-104867)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104869
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104868
+          (new
+           prop:field-id%
+           (value code-104869)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104855
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104846)
+           (properties
+            (list
+             (cons 'id code-104856)
+             (cons 'label code-104858)
+             (cons 'callback code-104860)
+             (cons 'shortcut code-104862)
+             (cons 'help-string code-104864)
+             (cons 'demand-callback code-104866)
+             (cons 'shortcut-prefix code-104868)))))
+         (code-104872
+          (new prop:atom% (value 'menu-item-save)))
+         (code-104871
+          (new
+           prop:field-id%
+           (value code-104872)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104874 (new prop:atom% (value '"&Save")))
+         (code-104873
+          (new
+           prop:field-id%
+           (value code-104874)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104876
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104875
+          (new
+           prop:field-id%
+           (value code-104876)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104878 (shortcut-values '#\S))
+         (code-104877
+          (new
+           prop:field-id%
+           (value code-104878)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104880 (new prop:atom% (value '"Save")))
+         (code-104879
+          (new
+           prop:field-id%
+           (value code-104880)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104882
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104881
+          (new
+           prop:field-id%
+           (value code-104882)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104884
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104883
+          (new
+           prop:field-id%
+           (value code-104884)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104870
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104846)
+           (properties
+            (list
+             (cons 'id code-104871)
+             (cons 'label code-104873)
+             (cons 'callback code-104875)
+             (cons 'shortcut code-104877)
+             (cons 'help-string code-104879)
+             (cons 'demand-callback code-104881)
+             (cons 'shortcut-prefix code-104883)))))
+         (code-104887
+          (new prop:atom% (value 'menu-item-save-as)))
+         (code-104886
+          (new
+           prop:field-id%
+           (value code-104887)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104889
+          (new prop:atom% (value '"&Save as...")))
+         (code-104888
+          (new
+           prop:field-id%
+           (value code-104889)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104891
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104890
+          (new
+           prop:field-id%
+           (value code-104891)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104893 (shortcut-values '#f))
+         (code-104892
+          (new
+           prop:field-id%
+           (value code-104893)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104895
+          (new prop:atom% (value '"Save as")))
+         (code-104894
+          (new
+           prop:field-id%
+           (value code-104895)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104897
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104896
+          (new
+           prop:field-id%
+           (value code-104897)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104899
+          (new
+           prop:some-of%
+           (value (list 'ctl 'shift))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104898
+          (new
+           prop:field-id%
+           (value code-104899)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104885
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104846)
+           (properties
+            (list
+             (cons 'id code-104886)
+             (cons 'label code-104888)
+             (cons 'callback code-104890)
+             (cons 'shortcut code-104892)
+             (cons 'help-string code-104894)
+             (cons 'demand-callback code-104896)
+             (cons 'shortcut-prefix code-104898)))))
+         (code-104902
+          (new
+           prop:atom%
+           (value 'separator-menu-item-99622)))
+         (code-104901
+          (new
+           prop:field-id%
+           (value code-104902)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104900
+          (new
+           mred-id%
+           (plugin
+            (get-widget-plugin 'separator-menu-item))
+           (mred-parent code-104846)
+           (properties (list (cons 'id code-104901)))))
+         (code-104905
+          (new prop:atom% (value 'menu-item-exit)))
+         (code-104904
+          (new
+           prop:field-id%
+           (value code-104905)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104907 (new prop:atom% (value '"E&xit")))
+         (code-104906
+          (new
+           prop:field-id%
+           (value code-104907)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104909
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104908
+          (new
+           prop:field-id%
+           (value code-104909)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104911 (shortcut-values '#\Q))
+         (code-104910
+          (new
+           prop:field-id%
+           (value code-104911)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104913
+          (new prop:atom% (value '"Exit Application")))
+         (code-104912
+          (new
+           prop:field-id%
+           (value code-104913)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104915
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104914
+          (new
+           prop:field-id%
+           (value code-104915)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104917
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104916
+          (new
+           prop:field-id%
+           (value code-104917)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104903
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104846)
+           (properties
+            (list
+             (cons 'id code-104904)
+             (cons 'label code-104906)
+             (cons 'callback code-104908)
+             (cons 'shortcut code-104910)
+             (cons 'help-string code-104912)
+             (cons 'demand-callback code-104914)
+             (cons 'shortcut-prefix code-104916)))))
+         (code-104920
+          (new prop:atom% (value 'menu-edit)))
+         (code-104919
+          (new
+           prop:field-id%
+           (value code-104920)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104922 (new prop:atom% (value '"&Edit")))
+         (code-104921
+          (new
+           prop:field-id%
+           (value code-104922)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104924 (new prop:atom% (value '"Edit")))
+         (code-104923
+          (new
+           prop:field-id%
+           (value code-104924)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104926
+          (new
+           prop:code%
+           (value (lambda (m) (void)))
+           (value-code '(lambda (m) (void)))))
+         (code-104925
+          (new
+           prop:field-id%
+           (value code-104926)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104918
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu))
+           (mred-parent code-104840)
+           (properties
+            (list
+             (cons 'id code-104919)
+             (cons 'label code-104921)
+             (cons 'help-string code-104923)
+             (cons 'demand-callback code-104925)))))
+         (code-104929
+          (new prop:atom% (value 'menu-item-cut)))
+         (code-104928
+          (new
+           prop:field-id%
+           (value code-104929)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104931 (new prop:atom% (value '"&Cut")))
+         (code-104930
+          (new
+           prop:field-id%
+           (value code-104931)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104933
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104932
+          (new
+           prop:field-id%
+           (value code-104933)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104935 (shortcut-values '#\X))
+         (code-104934
+          (new
+           prop:field-id%
+           (value code-104935)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104937 (new prop:atom% (value '"Cut")))
+         (code-104936
+          (new
+           prop:field-id%
+           (value code-104937)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104939
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104938
+          (new
+           prop:field-id%
+           (value code-104939)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104941
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104940
+          (new
+           prop:field-id%
+           (value code-104941)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104927
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104918)
+           (properties
+            (list
+             (cons 'id code-104928)
+             (cons 'label code-104930)
+             (cons 'callback code-104932)
+             (cons 'shortcut code-104934)
+             (cons 'help-string code-104936)
+             (cons 'demand-callback code-104938)
+             (cons 'shortcut-prefix code-104940)))))
+         (code-104944
+          (new prop:atom% (value 'menu-item-copy)))
+         (code-104943
+          (new
+           prop:field-id%
+           (value code-104944)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104946 (new prop:atom% (value '"&Copy")))
+         (code-104945
+          (new
+           prop:field-id%
+           (value code-104946)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104948
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104947
+          (new
+           prop:field-id%
+           (value code-104948)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104950 (shortcut-values '#\C))
+         (code-104949
+          (new
+           prop:field-id%
+           (value code-104950)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104952 (new prop:atom% (value '"Copy")))
+         (code-104951
+          (new
+           prop:field-id%
+           (value code-104952)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104954
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104953
+          (new
+           prop:field-id%
+           (value code-104954)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104956
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104955
+          (new
+           prop:field-id%
+           (value code-104956)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104942
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104918)
+           (properties
+            (list
+             (cons 'id code-104943)
+             (cons 'label code-104945)
+             (cons 'callback code-104947)
+             (cons 'shortcut code-104949)
+             (cons 'help-string code-104951)
+             (cons 'demand-callback code-104953)
+             (cons 'shortcut-prefix code-104955)))))
+         (code-104959
+          (new prop:atom% (value 'menu-item-paste)))
+         (code-104958
+          (new
+           prop:field-id%
+           (value code-104959)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104961
+          (new prop:atom% (value '"&Paste")))
+         (code-104960
+          (new
+           prop:field-id%
+           (value code-104961)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104963
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104962
+          (new
+           prop:field-id%
+           (value code-104963)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104965 (shortcut-values '#\V))
+         (code-104964
+          (new
+           prop:field-id%
+           (value code-104965)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104967 (new prop:atom% (value '"Paste")))
+         (code-104966
+          (new
+           prop:field-id%
+           (value code-104967)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104969
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104968
+          (new
+           prop:field-id%
+           (value code-104969)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104971
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104970
+          (new
+           prop:field-id%
+           (value code-104971)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104957
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104918)
+           (properties
+            (list
+             (cons 'id code-104958)
+             (cons 'label code-104960)
+             (cons 'callback code-104962)
+             (cons 'shortcut code-104964)
+             (cons 'help-string code-104966)
+             (cons 'demand-callback code-104968)
+             (cons 'shortcut-prefix code-104970)))))
+         (code-104974
+          (new
+           prop:atom%
+           (value 'separator-menu-item-99686)))
+         (code-104973
+          (new
+           prop:field-id%
+           (value code-104974)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104972
+          (new
+           mred-id%
+           (plugin
+            (get-widget-plugin 'separator-menu-item))
+           (mred-parent code-104918)
+           (properties (list (cons 'id code-104973)))))
+         (code-104977
+          (new prop:atom% (value 'menu-item-pref)))
+         (code-104976
+          (new
+           prop:field-id%
+           (value code-104977)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104979
+          (new prop:atom% (value '"&Preferences...")))
+         (code-104978
+          (new
+           prop:field-id%
+           (value code-104979)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104981
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-104980
+          (new
+           prop:field-id%
+           (value code-104981)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104983 (shortcut-values 'f1))
+         (code-104982
+          (new
+           prop:field-id%
+           (value code-104983)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104985
+          (new prop:atom% (value '"Preferences")))
+         (code-104984
+          (new
+           prop:field-id%
+           (value code-104985)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104987
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-104986
+          (new
+           prop:field-id%
+           (value code-104987)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104989
+          (new
+           prop:some-of%
+           (value (list 'ctl))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-104988
+          (new
+           prop:field-id%
+           (value code-104989)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104975
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104918)
+           (properties
+            (list
+             (cons 'id code-104976)
+             (cons 'label code-104978)
+             (cons 'callback code-104980)
+             (cons 'shortcut code-104982)
+             (cons 'help-string code-104984)
+             (cons 'demand-callback code-104986)
+             (cons 'shortcut-prefix code-104988)))))
+         (code-104992
+          (new prop:atom% (value 'menu-help)))
+         (code-104991
+          (new
+           prop:field-id%
+           (value code-104992)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-104994 (new prop:atom% (value '"&Help")))
+         (code-104993
+          (new
+           prop:field-id%
+           (value code-104994)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104996 (new prop:atom% (value '"Help")))
+         (code-104995
+          (new
+           prop:field-id%
+           (value code-104996)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104998
+          (new
+           prop:code%
+           (value (lambda (m) (void)))
+           (value-code '(lambda (m) (void)))))
+         (code-104997
+          (new
+           prop:field-id%
+           (value code-104998)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104990
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu))
+           (mred-parent code-104840)
+           (properties
+            (list
+             (cons 'id code-104991)
+             (cons 'label code-104993)
+             (cons 'help-string code-104995)
+             (cons 'demand-callback code-104997)))))
+         (code-105001
+          (new prop:atom% (value 'menu-item-about)))
+         (code-105000
+          (new
+           prop:field-id%
+           (value code-105001)
+           (field-id 'id)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#t)
+           (hidden '#f)))
+         (code-105003
+          (new prop:atom% (value '"&About...")))
+         (code-105002
+          (new
+           prop:field-id%
+           (value code-105003)
+           (field-id 'label)
+           (option '#f)
+           (necessary '#t)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-105005
+          (new
+           prop:code%
+           (value (lambda (item event) (void)))
+           (value-code '(lambda (item event) (void)))))
+         (code-105004
+          (new
+           prop:field-id%
+           (value code-105005)
+           (field-id 'callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-105007 (shortcut-values 'f1))
+         (code-105006
+          (new
+           prop:field-id%
+           (value code-105007)
+           (field-id 'shortcut)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-105009 (new prop:atom% (value '"About")))
+         (code-105008
+          (new
+           prop:field-id%
+           (value code-105009)
+           (field-id 'help-string)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-105011
+          (new
+           prop:code%
+           (value (lambda (item) (void)))
+           (value-code '(lambda (item) (void)))))
+         (code-105010
+          (new
+           prop:field-id%
+           (value code-105011)
+           (field-id 'demand-callback)
+           (option '#t)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-105013
+          (new
+           prop:some-of%
+           (value (list))
+           (choices
+            (list
+             'alt
+             'cmd
+             'meta
+             'ctl
+             'shift
+             'option))))
+         (code-105012
+          (new
+           prop:field-id%
+           (value code-105013)
+           (field-id 'shortcut-prefix)
+           (option '#f)
+           (necessary '#f)
+           (no-code '#f)
+           (hidden '#f)))
+         (code-104999
+          (new
+           mred-id%
+           (plugin (get-widget-plugin 'menu-item))
+           (mred-parent code-104990)
+           (properties
+            (list
+             (cons 'id code-105000)
+             (cons 'label code-105002)
+             (cons 'callback code-105004)
+             (cons 'shortcut code-105006)
+             (cons 'help-string code-105008)
+             (cons 'demand-callback code-105010)
+             (cons 'shortcut-prefix code-105012))))))
+    (list
+     code-104840
+     code-104846
+     code-104855
+     code-104870
+     code-104885
+     code-104900
+     code-104903
+     code-104918
+     code-104927
+     code-104942
+     code-104957
+     code-104972
+     code-104975
+     code-104990
+     code-104999)))
+))
