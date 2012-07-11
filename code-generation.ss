@@ -64,10 +64,11 @@
 ;;==========================================================================
 ;;===                Code generated with MrEd Designer " application-version
                                                          "               ===
-;;===                 http://mred-designer.origo.ethz.ch                 ===
+;;===              https://github.com/Metaxal/MrEd-Designer              ===
 ;;==========================================================================
 
 ") ; add the name of the project and the date ? and the username ?
+; ;;===                 http://mred-designer.origo.ethz.ch                 ===
   )
  
 (define (print-requires reqs)
