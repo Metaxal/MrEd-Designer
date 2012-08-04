@@ -8,6 +8,9 @@
          framework
          )
 
+;;; TODO: deleting a tab-panel with children is buggy
+;;; (some children are not "active children" for delete-child)
+
 (define tab-panel-preview%
   (class tab-panel% (super-new)
     ;(define single-panel (new panel:single% [parent this]))
