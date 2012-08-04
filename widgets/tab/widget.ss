@@ -13,8 +13,8 @@
   (class vertical-panel%
     (init parent)
     (init-field label) ; should be code-writable ??!!
-    (super-new [parent 
-                (send parent get-single-panel)])
+    (super-new [parent parent])
+    ;            (send parent get-single-panel)])
     (send parent add-child-panel this label)
     )]
  [parent-class tab-panel%]
