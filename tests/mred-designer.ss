@@ -166,7 +166,7 @@
          (button-hierarchy-down-callback
           (lambda (button control-event) (void)))
          #:canvas-9346-paint-callback
-         (canvas-9346-paint-callback (? (canvas dc) (void))))
+         (canvas-9346-paint-callback (lambda (canvas dc) (void))))
   (set! frame-toolbox
     (new
      frame%
@@ -355,7 +355,7 @@
      (choices (list "First" "Second"))
      (callback choice-5385-callback)
      (style
-      ((? (l) (list* (first l) (second l))) (list 'horizontal-label '())))
+      ((lambda (l) (list* (first l) (second l))) (list 'horizontal-label '())))
      (font (list->font (list 8 'default 'normal 'normal #f 'default #f)))
      (selection 0)
      (enabled #t)
