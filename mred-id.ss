@@ -25,12 +25,11 @@
 (define/provide mred-id%
   (class (code-write%% object%)
     (super-new)
-    (init-field 
-      plugin
-      mred-parent 
-      properties
-        [widget #f]
-      )
+    (init-field plugin
+                mred-parent 
+                properties
+                [widget #f]
+                )
     (field [mred-children '()]
            )
     
@@ -191,7 +190,7 @@
       (when (is-a? this area-container<%>)
         (send this end-container-sequence))
 
-      (when mred-parent 
+      (when mred-parent ;(and mred-parent (member this (send mred-parent get-children)))
         (send mred-parent delete-child this))
 
       (debug-printf "delete: exit\n")
@@ -245,7 +244,8 @@
       (set! mred-children (remq mid mred-children))
       (let ([midw (send mid get-widget)])
         (if (is-a? midw subwindow<%>)
-            (send widget delete-child midw)
+            (when (member midw (send widget get-children))
+              (send widget delete-child midw))
             (recreate-top-level-window))
         ))
     

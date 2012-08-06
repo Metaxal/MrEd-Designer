@@ -1,0 +1,13 @@
+Update to newest version:
+$ git pull
+
+Files are not added automatically:
+$ git add <file>
+
+Local commit of all changes, + asks for message:
+$ git commit -a
+
+push to github:
+$ git push
+
+

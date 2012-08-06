@@ -14,13 +14,15 @@
  [options '()]
  ( ; widget properties
   [editor (prop:code #f)]
-  [style (prop:some-of (list 'no-border 'control-border 'combo
-                             'no-hscroll 'no-vscroll
-                             'hide-hscroll 'hide-vscroll
-                             'auto-hscroll 'auto-vscroll
-                             'resize-corner 'no-focus 'deleted 
-                             'transparent)
-                       '())]
+  [style (prop:popup
+          (prop:some-of '(no-border
+                          control-border  combo
+                          no-hscroll      no-vscroll
+                          hide-hscroll    hide-vscroll
+                          auto-hscroll    auto-vscroll
+                          resize-corner   no-focus
+                          deleted         transparent)
+                        '()))]
   [scrolls-per-page 100]	 
   [label "Editor-Canvas"]
   [wheel-step 3]	 
