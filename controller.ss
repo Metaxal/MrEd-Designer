@@ -347,10 +347,9 @@
                          parent-frame
                          base-path
                          dft-name  
-                         "*.ss"
+                         "*.rkt"
                          '()
-                         '(("Scheme (.ss)"  "*.ss")
-                           ("Scheme (.scm)" "*.scm")
+                         '(("Racket (.rkt)"  "*.rkt")
                            ("Any"           "*.*")))])
     (and file
          (path->string file)
@@ -379,7 +378,7 @@
     (let* ([project-mid (send mid get-top-mred-parent)]
            ;[proj-file (send project-mid get-property-value 'file)]
            [base-dir (send project-mid get-project-dir)]; (and proj-file (path-only (string->path proj-file)))]
-           [dft-file (string-append (->string (send project-mid get-id)) ".ss")]
+           [dft-file (string-append (->string (send project-mid get-id)) ".rkt")]
            [file (if ask-user?
                      (choose-code-file dft-file base-dir toolbox-frame)
                      dft-file)]

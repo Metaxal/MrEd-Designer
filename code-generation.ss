@@ -59,7 +59,7 @@
 
 (define (module-header)
   (string-append "\
-#lang scheme/gui
+#lang racket/gui
 
 ;;==========================================================================
 ;;===                Code generated with MrEd Designer " application-version
