@@ -220,10 +220,15 @@
          [min-width 110]
          [callback (λ _ (generate-code-to-console-callback))])
     (new button%
-         [label "To <project-id>.ss"]
+         [label "To <project-id>.rkt"]
          [parent hp]
          [min-width 110]
          [callback (λ _ (generate-code-callback #:ask #f))])
+    (new button%
+         [label "Save Project"]
+         [parent hp]
+         [min-width 110]
+         [callback (λ _ (save-project-callback))])
     )
     
   ; Enable/disable the toolbar buttons if they can be instantiated with no parent 
