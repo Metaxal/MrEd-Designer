@@ -386,7 +386,7 @@
       #f)
     ))
 
-(define/provide (controller-generate-code-to-console [mid (get-current-mred-id)])
+(define/provide (controller-generate-code-to-frame [mid (get-current-mred-id)])
   (when mid
     (define project-mid (send mid get-top-mred-parent))
     (define f (new no-exit-frame:text%  

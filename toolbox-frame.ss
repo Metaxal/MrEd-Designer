@@ -58,7 +58,7 @@
                  #:exit-application-callback exit-application-callback
                  #:plugin-button-callback    plugin-button-callback 
                  #:generate-code-callback    generate-code-callback
-                 #:generate-code-to-console-callback generate-code-to-console-callback
+                 #:generate-code-to-console-callback generate-code-to-frame-callback
                  #:new-project-callback      new-project-callback
                  #:load-project-callback     load-project-callback
                  #:save-project-callback     save-project-callback
@@ -218,7 +218,7 @@
          [label "To frame"]
          [parent hp]
          [min-width 110]
-         [callback (λ _ (generate-code-to-console-callback))])
+         [callback (λ _ (generate-code-to-frame-callback))])
     (new button%
          [label "To <project-id>.rkt"]
          [parent hp]
