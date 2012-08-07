@@ -367,10 +367,36 @@
 ;            (path->string file))
         )))
 
+;; Like frame:text% but without exiting the app when closing the window
+(define no-exit-frame:text%
+  (class frame:text%
+    (super-new)
+    (define/override (on-exit)
+      ;(printf "on-exit\n")
+      (void))
+    (define/override (can-exit?)
+      ;(printf "can-exit?\n")
+      #f)
+    (define/augment (on-close)
+      ;(printf "on-close\n")
+      (void))
+    (define/augment (can-close?)
+      ;(printf "can-close?\n")
+      (send this show #f)
+      #f)
+    ))
+
 (define/provide (controller-generate-code-to-console [mid (get-current-mred-id)])
   (when mid
-    (let ([project-mid (send mid get-top-mred-parent)])
-      (generate-module project-mid))))
+    (define project-mid (send mid get-top-mred-parent))
+    (define f (new no-exit-frame:text%  
+                   [min-height 500]))
+    (send f set-label (->string (send project-mid get-id)))
+    (define txt (send f get-editor))
+    (send txt insert
+          (with-output-to-string (λ _ (generate-module project-mid))))
+    (send f show #t)    
+    )) 
 
 (define/provide (controller-generate-code [mid (get-current-mred-id)]
                                           #:ask [ask-user? #t])

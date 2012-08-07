@@ -215,7 +215,7 @@
                   )]
          )
     (new button%
-         [label "To console"]
+         [label "To frame"]
          [parent hp]
          [min-width 110]
          [callback (λ _ (generate-code-to-console-callback))])
