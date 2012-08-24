@@ -41,7 +41,6 @@
             (define name val))]
     ))
 
-
 ;; Current version of MrEd Designer
 (define/provide application-version-maj 3)
 (define/provide application-version-min 8)
@@ -49,8 +48,6 @@
 (define/provide application-name "MrEd Designer")
 (define/provide application-name-version
   (string-append application-name " " application-version))
-
-
 
 ;; Defines a mock (a substitute) for a function.
 ;; When called, the function only prints a warning.
@@ -68,7 +65,6 @@
 (define/provide (debug-printf . r)
   (when debug
     (apply printf r)))
-             
 
 ;; Loads the images when necessary
 ;; Stores them in a hash for re-use
@@ -183,8 +179,6 @@
 (define/provide (list-move-right l e)
   (reverse (list-move-left (reverse l) e)))
 
-
-
 (define/provide (text-split-with-empty str ch empty)
   (let* 
       ((idx (string-length str))
@@ -275,7 +269,6 @@
 ;; Usefull for some property widgets like pwig:file%
 (define/provide current-property-mred-id (make-parameter #f))
 
-
 ;; takes a list of codes and generates code accordingly.
 ;; if no code -> #f
 ;; if one expr -> this expr
@@ -286,7 +279,6 @@
         [(empty? (rest codes)) (first codes)]
         [else (cons 'begin codes)]
         ))
-    
 
 ;; Try ... catch ... finally
 ;; Finally is executed before the catch.
@@ -310,11 +302,9 @@
      (try t ... (catch) (finally f ...))]
      ))
 
-
 ; ***********************
 ; * Classes and Objects *
 ; ***********************
-
 
 ;; Sends the same message to all the objects of the list.
 ;; (map get-value list-of-valued-objects)
@@ -389,7 +379,6 @@
 ; *******
 ; * GUI *
 ; *******
-
 
 ;; Closes a top-level-window.
 (define/provide (close-window tlw)
