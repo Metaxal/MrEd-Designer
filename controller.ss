@@ -357,10 +357,9 @@
                          parent-frame
                          base-path
                          dft-name  
-                         "*.ss"
+                         "*.rkt"
                          '()
-                         '(("Scheme (.ss)"  "*.ss")
-                           ("Scheme (.scm)" "*.scm")
+                         '(("Racket (.rkt)"  "*.rkt")
                            ("Any"           "*.*")))])
     (and file
          (path->string file)
@@ -378,10 +377,36 @@
 ;            (path->string file))
         )))
 
-(define/provide (controller-generate-code-to-console [mid (get-current-mred-id)])
+;; Like frame:text% but without exiting the app when closing the window
+(define no-exit-frame:text%
+  (class frame:text%
+    (super-new)
+    (define/override (on-exit)
+      ;(printf "on-exit\n")
+      (void))
+    (define/override (can-exit?)
+      ;(printf "can-exit?\n")
+      #f)
+    (define/augment (on-close)
+      ;(printf "on-close\n")
+      (void))
+    (define/augment (can-close?)
+      ;(printf "can-close?\n")
+      (send this show #f)
+      #f)
+    ))
+
+(define/provide (controller-generate-code-to-frame [mid (get-current-mred-id)])
   (when mid
-    (let ([project-mid (send mid get-top-mred-parent)])
-      (generate-module project-mid))))
+    (define project-mid (send mid get-top-mred-parent))
+    (define f (new no-exit-frame:text%  
+                   [min-height 500]))
+    (send f set-label (->string (send project-mid get-id)))
+    (define txt (send f get-editor))
+    (send txt insert
+          (with-output-to-string (λ _ (generate-module project-mid))))
+    (send f show #t)    
+    )) 
 
 (define/provide (controller-generate-code [mid (get-current-mred-id)]
                                           #:ask [ask-user? #t])
@@ -389,7 +414,7 @@
     (let* ([project-mid (send mid get-top-mred-parent)]
            ;[proj-file (send project-mid get-property-value 'file)]
            [base-dir (send project-mid get-project-dir)]; (and proj-file (path-only (string->path proj-file)))]
-           [dft-file (string-append (->string (send project-mid get-id)) ".ss")]
+           [dft-file (string-append (->string (send project-mid get-id)) ".rkt")]
            [file (if ask-user?
                      (choose-code-file dft-file base-dir toolbox-frame)
                      dft-file)]

@@ -1,3 +1,10 @@
+Version 3.9
+  Laurent Orseau, Kieron Hardy, 2012-??-??
+- added: editor-canvas widget (Kieron Hardy)
+- changed: Scheme->racket
+- changed: output to frame instead of to console
+- fix: tab-panel crash and removed need for single-panel
+
 Version 3.8
   Laurent Orseau, 2012-02-04
 - added: can now take projects as command line arguments
@@ -7,7 +14,6 @@ Version 3.8
   Fixes by Kieron Hardy:
 - fixed: tooltip.ss was not always removing tooltip on windows
 - fixed: mreddesigner.bat : small DOS issues
-
 
 Version 3.7
   Laurent Orseau, 2010-07-26

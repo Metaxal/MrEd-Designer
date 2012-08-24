@@ -95,7 +95,7 @@
  #:exit-application-callback controller-exit-application
  #:plugin-button-callback    controller-create-mred-id
  #:generate-code-callback    controller-generate-code
- #:generate-code-to-console-callback controller-generate-code-to-console
+ #:generate-code-to-console-callback controller-generate-code-to-frame
  #:new-project-callback      controller-new-project
  #:load-project-callback     controller-load-project
  #:save-project-callback     controller-save-project
