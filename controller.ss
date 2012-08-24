@@ -76,9 +76,9 @@
 
 (define/provide (controller-create-mred-id plugin [mred-parent (get-current-mred-id)])
   (let* ([new-mred-id (send plugin new-mred-id mred-parent)])
-    (debug-printf "controller-create-mred-id: new-mred-id:~a~n" new-mred-id)
+    (debug-printf "controller-create-mred-id: ~a ~a ~a~n" (send plugin get-type) mred-parent new-mred-id)
     (when new-mred-id
-      (printf "controller-create-mred-id: creating widget from plugin ~a~n" (send plugin get-type))
+;      (printf "creating widget from plugin ~a~n" (send plugin get-type))
       (project-changed! new-mred-id)
       ; Call add-children wrapper for add-child - kdh 2012-02-29      
       (if mred-parent
@@ -169,18 +169,20 @@
        ))
          
 (define/provide (controller-load-template file [parent-mid (get-current-mred-id)])
-  (debug-printf "controller-load-template:~n")
+  (debug-printf "controller-load-template: ~a ~a~n" file parent-mid)
   (when file
     (unless (load-mred file parent-mid)
       (printf "Error: cannot load template file ~a~n" file))))
 
 (define/provide (controller-save-template name [file #f] [mid (get-current-mred-id)])
-  (debug-printf "controller-save-template: file:~a mid:~a~n" file mid)
+  (debug-printf "controller-save-template: \"~a\" \"~a\" ~a~n" name file mid)
   (when mid
     (save-template mid name file)
     (controller-update-templates)
     )
   (debug-printf "controller-save-template: exit~n")
+  ; specify return value - kdh 2012-07-09      
+  (void)
   )
 
 (define/provide (controller-replace-current-template file)
@@ -188,6 +190,8 @@
   (save-template (get-current-mred-id) (get-template-name file) file)
   ;(controller-update-templates)
   (debug-printf "controller-replace-current-template: exit~n")
+  ; specify return value - kdh 2012-07-09      
+  (void)
   )
   
 (define/provide (controller-delete-template file)
@@ -313,11 +317,12 @@
       ))
   (end-busy-cursor)
   (debug-printf "save-project: exit~n")
-  ; return value:
-  #t
+  ; specify return value - kdh 2012-07-09      
+  (void)
   )
 
 (define/provide (controller-save-project [save-as? #f] [mid (get-current-mred-id)])
+  (debug-printf "controller-save-project: save-as?:~a mid:~a ~n" save-as? mid)
   (when mid
     (let* ([project-mid (send mid get-top-mred-parent)]
            [file (or (and (not save-as?)
@@ -339,7 +344,12 @@
            )
       (when file
         (save-project project-mid file))
-      )))
+      ))
+
+  (debug-printf "controller-save-project: done~n")
+  ; specify return value - kdh 2012-07-09      
+  (void)
+  )
 
 (define (choose-code-file dft-name [base-path #f] [parent-frame #f])
   (let ([base-path (and base-path (normal-case-path (simple-form-path base-path)))]
