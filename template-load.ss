@@ -1,4 +1,4 @@
-#lang scheme
+#lang racket
 
 ; For template loading
 (require "properties.ss"
@@ -6,7 +6,7 @@
          "mred-id.ss"
          "default-values.ss"
          "mreddesigner-misc.ss" ; for debug-printf
-         scheme/gui/base
+         racket/gui/base
          framework 
          
          ; Yurk! Specific behavior!
