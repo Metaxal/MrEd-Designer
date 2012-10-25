@@ -1,6 +1,7 @@
-#lang scheme
+#lang racket
 
-(require "mreddesigner-misc.ss"
+(require racket/gui/base
+         "mreddesigner-misc.ss"
          "mred-id.ss"
          "mred-plugin.ss"
          "code-generation.ss"
@@ -59,6 +60,8 @@
                        ,name)
                  (cons 'parent-class
                        ,(send (send mid get-plugin) get-parent-widget-class-symbol))
+                 (cons 'med-version 
+                       ,(list 'list application-version-maj application-version-min))
                  (cons 'code
                        ,(write-mred-id-code mid)))))
         #:exists 'replace)
@@ -75,8 +78,13 @@
          (when dico
            (let ([name (dict-ref dico 'name)]
                  [parent-class (dict-ref dico 'parent-class)]
+                 [med-version (dict-ref dico 'med-version #f)] ; if not found (#f), then file was created with version < 3.9
                  [proc (dict-ref dico 'code)])
-             (and (procedure? proc)
+             (if med-version
+                (printf "MED template version: ~a\n" med-version)
+                (printf "No MED template version found\n"))
+             (and (check-template-version med-version)
+                  (procedure? proc)
                   (equal? (procedure-arity proc) 1)
                   (or (can-instantiate-under? parent-mid parent-class)
                       (begin 
@@ -91,3 +99,23 @@
 (define/provide (delete-template file)
   (when file
     (delete-file file)))
+    
+(define (newer-version-than-current? vers)
+  (and vers
+       (or (> (first vers) application-version-maj)
+           (and (= (first vers) application-version-maj)
+                (> (second vers) application-version-min)))))
+
+(define (check-template-version vers)
+    (or (not (newer-version-than-current? vers))
+        (eq? 
+ 'yes
+ (message-box "Object created with newer version" 
+              (format "The object you are loading was made with version ~a.~a of ~a which is newer than you current version ~a.~a. There may be problems loading it. Do you still want to proceed?" 
+                      (first vers) (second vers)
+                      application-name
+                      application-version-maj application-version-min)
+              #f '(yes-no)))))
+
+
+
