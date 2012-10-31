@@ -4,7 +4,6 @@
          "../../default-values.ss"
          scheme/gui/base)
 
-
 (make-plugin
  [type 'radio-box]
  [tooltip "Radio Box"]
@@ -14,7 +13,7 @@
  [necessary '(label choices parent)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Radio Box"]
+  [label (prop:false-or-string "Radio Box")]
   [choices '("&First" "&Second")]
   [callback (prop:code (lambda (radio-box control-event) (void)))]
   [style (prop:proc
@@ -24,7 +23,7 @@
                       (prop:some-of '(deleted) '()))
           (λ(l)(list* (first l) (second l) (third l))))]
   [font (font-values)]
-  [selection 0]
+  [selection (prop:false-or-number 0)]
   [enabled #t]
   [vert-margin 2]
   [horiz-margin 2]

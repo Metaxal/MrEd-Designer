@@ -4,7 +4,6 @@
          "../../default-values.ss"
          scheme/gui/base)
 
-
 (make-plugin
  [type 'gauge]
  [tooltip "Gauge"]
@@ -14,7 +13,7 @@
  [necessary '(label parent range)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Gauge"]
+  [label (prop:false-or-string "Gauge")]
   [range 100]
   ; optional
   [style (prop:proc

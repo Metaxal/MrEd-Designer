@@ -4,6 +4,9 @@ Version 3.9
 - changed: Scheme->racket
 - changed: output to frame instead of to console
 - fix: tab-panel crash and removed need for single-panel
+- added: add version to project file and check version on open
+- changed: modify label to false-or-string for some GUI widgets
+- changed: modify some number properties to false-or-number for some GUI widgets
 
 Version 3.8
   Laurent Orseau, 2012-02-04

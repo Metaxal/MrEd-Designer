@@ -222,3 +222,12 @@
     )
    (λ(l)(and (first l) (second l)))
    ))
+
+(define/provide (prop:false-or-string v)
+  (prop:proc-unquoted
+   (prop:hgroup
+    (and v #t) ; this is no mistake (I want it to write #t)
+    (or v "")
+    )
+   (λ(l)(and (first l) (second l)))
+   ))

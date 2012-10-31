@@ -4,7 +4,6 @@
          "../../default-values.ss"
          scheme/gui/base)
 
-
 (make-plugin
  [type 'combo-field]
  [tooltip "Combo Field"]
@@ -14,7 +13,7 @@
  [necessary '(label choices parent)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Combo Field"]
+  [label (prop:false-or-string "Combo Field")]
   [choices '("First" "Second")]
   [callback (prop:code (lambda (combo-field control-event) (void)))]
   [init-value "Text"]

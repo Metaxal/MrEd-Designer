@@ -24,9 +24,9 @@
                           deleted         transparent)
                         '()))]
   [scrolls-per-page 100]	 
-  [label "Editor-Canvas"]
-  [wheel-step 3]	 
-  [line-count  (prop:false-or-number #f)]	 
+  [label (prop:false-or-string "Editor-Canvas")]
+  [wheel-step (prop:false-or-number 3)]	 
+  [line-count (prop:false-or-number #f)]	 
   [horizontal-inset 5]	 
   [vertical-inset 5]	 
   [enabled #t]

@@ -14,7 +14,7 @@
  [necessary '(label choices parent)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Choice"]
+  [label (prop:false-or-string "Choice")]
   [choices '("First" "Second")]
   [callback (prop:code (lambda (choice control-event) (void)))]
   [style (prop:proc

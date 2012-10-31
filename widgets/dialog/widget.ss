@@ -1,10 +1,7 @@
 #lang scheme
 
 (require "../../mred-plugin.ss"
-         "../../mred-id.ss"
-         "../../controller.ss"
          "../../default-values.ss"
-         "../../toolbox-frame.ss"
          "../project/preview.ss" ; needed for plugin% class... ; ????  WARNING: make-plugin??
          "../frame/preview.ss"
          scheme/gui/base)

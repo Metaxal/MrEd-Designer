@@ -14,6 +14,6 @@
  [options '(demand-callback)]
  ( ; widget properties
   [label "&Menu"]
-  [help-string "Menu"]
+  [help-string (prop:false-or-string "Menu")]
   [demand-callback (prop:code (lambda (m) (void)))]
   ))

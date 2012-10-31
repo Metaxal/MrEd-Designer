@@ -13,7 +13,7 @@
  [necessary '(label parent)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Text Field"]
+  [label (prop:false-or-string "Text Field")]
   [callback (prop:code (lambda (text-field control-event) (void)))]
   [init-value "Text"]
   [style (prop:proc

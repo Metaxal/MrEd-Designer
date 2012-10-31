@@ -1,7 +1,6 @@
 #lang scheme
 
 (require "../../mred-plugin.ss"
-         "../../default-values.ss"
          scheme/gui/base)
 
 (define dft-prefix (get-default-shortcut-prefix))

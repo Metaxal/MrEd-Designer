@@ -18,7 +18,7 @@
   [label "&Item"]
   [callback (prop:code (lambda (item event) (void)))]
   [shortcut (shortcut-values)]
-  [help-string "Item"]
+  [help-string (prop:false-or-string "Item")]
   [demand-callback (prop:code (lambda (item) (void)))]
   [shortcut-prefix (prop:some-of '(alt cmd meta ctl shift option) dft-prefix)]
   ))

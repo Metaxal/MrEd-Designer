@@ -4,9 +4,7 @@
          "../../mreddesigner-misc.ss"
          "../../default-values.ss"
          "../../controller.ss"
-         scheme/gui/base
-         framework
-         )
+         scheme/gui/base)
 
 ;;; TODO: deleting a tab-panel with children is buggy
 ;;; (some children are not "active children" for delete-child)
@@ -86,4 +84,3 @@
   [stretchable-width  #t]
   [stretchable-height #t]
   ))
-

@@ -14,7 +14,7 @@
  [necessary '(label choices parent)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "List Box"]
+  [label (prop:false-or-string "List Box")]
   [choices '("First" "Second")]
   [callback (prop:code (lambda (list-box control-event) (void)))]
   [style (prop:proc
@@ -25,7 +25,7 @@
                       (prop:some-of '(deleted) '()))
           (λ(l)(list* (first l) (second l) (third l))))]
   [font (font-values)]
-  [selection 0]
+  [selection (prop:false-or-number 0)]
   [enabled #t]
   [vert-margin 2]
   [horiz-margin 2]

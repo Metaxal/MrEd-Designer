@@ -20,7 +20,7 @@
                              'no-focus 'deleted)
                        '())]
   [paint-callback (prop:code (λ (canvas dc) (void)))]
-  [label "Canvas"]
+  [label (prop:false-or-string "Canvas")]
   [gl-config #f]
   [enabled #t]
   [vert-margin  2]

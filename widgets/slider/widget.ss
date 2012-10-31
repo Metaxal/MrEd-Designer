@@ -4,7 +4,6 @@
          "../../default-values.ss"
          scheme/gui/base)
 
-
 (make-plugin
  [type 'slider]
  [tooltip "Slider"]
@@ -14,7 +13,7 @@
  [necessary '(label parent min-value max-value)] ; necessary properties
  [options '(callback)]
  ( ; widget properties
-  [label "Slider"]
+  [label (prop:false-or-string "Slider")]
   [min-value 0]
   [max-value 100]
   [init-value 0]

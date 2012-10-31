@@ -1,9 +1,7 @@
 #lang scheme
 
 (require "../../mred-plugin.ss"
-         "../../default-values.ss"
-         "preview.ss"
-         scheme/gui/base)
+         "preview.ss")
 
 (make-plugin
  [type 'project]
