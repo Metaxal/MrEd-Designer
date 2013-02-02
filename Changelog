@@ -1,5 +1,8 @@
+Version 3.11
+  Laurent Orseau, 201?-??-??
+
 Version 3.10
-  Laurent Orseau, Kieron Hardy, 201?-??-??
+  Laurent Orseau, Kieron Hardy, 2013-02-02
 - fix: print-as-expression set to #f in all cases
 
 Version 3.9
