@@ -1,3 +1,4 @@
+- automatic testing!! (module+ test and run raco test)
 - images should be relative to project path 
   simply ask for "relative?" at image loading
   (search for find-relative-path in controller.ss

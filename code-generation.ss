@@ -29,6 +29,9 @@
          "mreddesigner-misc.ss"
          scheme/gui/base)
 
+; Don't print quotes in the beginning of a (pretty-print '(list a b c))
+(print-as-expression #f)
+
 ;; List of other things to write in the file before the init function
 (define precode-list '())
 (define (add-precode e)

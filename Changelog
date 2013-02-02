@@ -1,7 +1,11 @@
+Version 3.10
+  Laurent Orseau, Kieron Hardy, 201?-??-??
+- fix: print-as-expression set to #f in all cases
+
 Version 3.9
-  Laurent Orseau, Kieron Hardy, 2012-??-??
+  Laurent Orseau, Kieron Hardy, 2012-10-31
 - added: editor-canvas widget (Kieron Hardy)
-- changed: Scheme->racket
+- changed: Scheme->Racket for generated code
 - changed: output to frame instead of to console
 - fix: tab-panel crash and removed need for single-panel
 - added: add version to project file and check version on open

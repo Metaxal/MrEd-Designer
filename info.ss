@@ -5,6 +5,7 @@
   `((p
      "Create Racket GUIs, WYSIWYG."
      (ul
+     ; nope, now it's on github...
       (li (a ((href "http://mred-designer.origo.ethz.ch"))
              "Homepage"))
       (li (a ((href "http://mred-designer.origo.ethz.ch/wiki/doc"))
@@ -21,8 +22,10 @@
 (define repositories '("4.x"))
 (define release-notes 
   '((ul
-     (li "added: can now take projects as command line arguments. Ex: gracket main.ss my-project.med")
-     (li "fixed: tab-panel child selection bug when empty child list")
-     (li "fixed (Kieron Hardy): tooltip.ss was not always removing tooltip on windows")
-     (li "fixed (Kieron Hardy): mreddesigner.bat : small DOS issues")
+     (li "editor-canvas widget (Kieron Hardy)")
+     (li "Racketify generated code")
+     (li "Output to frame instead of to console")
+     (li "Fixed tab-panel crash and remove need for single-panel")
+     (li "MED Project version checking: displays a warning when a recent project file is read by an older version (though it should currently not be problematic)")
+     (li "Added several false-or-text/number/etc. fields (Kieron Hardy)")
      )))
