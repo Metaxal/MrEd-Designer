@@ -1,5 +1,5 @@
 Update to newest version:
-$ git pull
+$ git pull --rebase
 
 Files are not added automatically:
 $ git add <file>
