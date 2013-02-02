@@ -1,5 +1,12 @@
+To checkout the repo for the first time:
+$ git clone https://github.com/Metaxal/MrEd-Designer.git
+
 Update to newest version:
 $ git pull --rebase
+
+(discussion on --rebase:
+http://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase
+)
 
 Files are not added automatically:
 $ git add <file>
