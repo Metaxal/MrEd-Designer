@@ -1,10 +1,10 @@
-#lang scheme
+#lang racket
 
 ;;; Use (make-plt) to create the archive
 ;;; see instructions at the bottom of this page
 
 (require planet/util
-         scheme/system
+         racket/system
          "mreddesigner-misc.ss"
          )
 
@@ -131,6 +131,21 @@
             "orseau" "mred-designer.plt" 
             application-version-maj application-version-min))))
 
+
+(module+ main
+  (printf "Please verify:
+  - version number in mreddesigner-misc.ss
+  - Changelog
+  - info.ss
+  ")
+  (printf "Creating plt archive... ")
+  (make-plt)
+  (printf "Done.\n")
+  )
+
+; Just use:
+; $ racket -t project-manager.ss
+; on the command line.
 
 
 ; 1) Change version in "mreddesigner-misc.ss", and below:
