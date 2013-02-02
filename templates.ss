@@ -8,6 +8,9 @@
          "template-load.ss"
          )
 
+(module+ test
+  (require rackunit))
+
 (define template-dir (build-path "templates"))
 ;; Dictionary of (template-file . template-name)
 (define/provide template-dict #f)
@@ -43,6 +46,21 @@
                            )))
                      (directory-list template-dir))))
 
+(define (print-template mid name)
+  ; writes the code that will be executed
+  (write name) (newline)
+  (parameterize ([print-as-expression #f])
+    (pretty-print 
+     `(list
+       (cons 'name 
+             ,name)
+       (cons 'parent-class
+             ,(send (send mid get-plugin) get-parent-widget-class-symbol))
+       (cons 'med-version 
+             ,(list 'list application-version-maj application-version-min))
+       (cons 'code
+             ,(write-mred-id-code mid))))))
+
 (define/provide (save-template mid name [file #f])
   (debug-printf "save-template: ~a\n" name)
   (when name
@@ -51,19 +69,7 @@
                                          template-dir))])
       ; write the name of the template
       (with-output-to-file file
-        (λ()
-          ; writes the code that will be executed
-          (write name) (newline)
-          (pretty-print 
-           `(list
-                 (cons 'name 
-                       ,name)
-                 (cons 'parent-class
-                       ,(send (send mid get-plugin) get-parent-widget-class-symbol))
-                 (cons 'med-version 
-                       ,(list 'list application-version-maj application-version-min))
-                 (cons 'code
-                       ,(write-mred-id-code mid)))))
+        (λ() (print-template mid name))
         #:exists 'replace)
       ))
   (debug-printf "save-template: exit\n")
