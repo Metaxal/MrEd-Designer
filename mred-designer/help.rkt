@@ -37,6 +37,11 @@
   (send-url "http://docs.racket-lang.org/gui/Windowing_Classes.html")
   #;(send-url "http://docs.plt-racket.org/gui/Windowing_Classes.html"))
 
+(define website 
+  "https://github.com/Metaxal/MrEd-Designer/"
+  #;"http://mred-designer.origo.ethz.ch"
+  #;"http://www.hexahedron.hu/personal/peteri/mreddesigner")
+
 ;; Obfuscate emails a bit:
 (define (mail-to user-list domain-list)
   (apply string-append 
@@ -73,7 +78,7 @@
                              (send dc draw-text (string-append " - Version " application-version) 354 183)
                              (send dc draw-text "(C) Jean-Pierre Lozi, 2004"   41 200)
                              (send dc draw-text "(C) Peter Ivanyi, 2007, 2008" 41 220)
-                             (send dc draw-text "(C) Laurent Orseau, 2010"     41 240)
+                             (send dc draw-text "(C) Laurent Orseau, 2010-2013"     41 240)
                            )
                          )
                        )
@@ -94,8 +99,7 @@
                                    ;(send-url "mailto:pivanyi@freemail.hu")))))
           (button (new button% (label "Website...") (min-width 166)(parent horizontal-pane)
                        (callback (lambda (button control-event)
-                                   (send-url "http://mred-designer.origo.ethz.ch")))))
-                                   ;(send-url "http://www.hexahedron.hu/personal/peteri/mreddesigner")))))
+                                   (send-url website)))))
           (button (new button% (label "Close") (min-width 166)(parent horizontal-pane)
                        (callback (lambda (button control-event)
                                    (send dialog show #f))))))

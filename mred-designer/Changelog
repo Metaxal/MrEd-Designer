@@ -1,5 +1,7 @@
 Version 3.11
-  Laurent Orseau, 201?-??-??
+  Laurent Orseau, 2013-04-05
+- Planet2 packaging.
+- Renamed many files, removed the remaining mreddesigner prefixes
 
 Version 3.10
   Laurent Orseau, Kieron Hardy, 2013-02-02
