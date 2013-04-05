@@ -23,7 +23,7 @@
 ;; #                                                                                #
 ;; ##################################################################################
 
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          "properties.rkt"
          )
 

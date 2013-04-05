@@ -27,7 +27,7 @@
 
 ;;; This module provides a tooltip%% mixin that can be used on buttons, checkboxes, etc.
 
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          )
 
 ; This is the tooltip message which appears in a tooltip window

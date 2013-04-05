@@ -5,7 +5,7 @@
 
 (require planet/util
          racket/system
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          )
 
 ; delete .bak files
@@ -134,7 +134,7 @@
 
 (module+ main
   (printf "Please verify:
-  - version number in mreddesigner-misc.rkt
+  - version number in misc.rkt
   - Changelog
   - info.rkt
   ")
@@ -148,7 +148,7 @@
 ; on the command line.
 
 
-; 1) Change version in "mreddesigner-misc.rkt", and below:
+; 1) Change version in "misc.rkt", and below:
 ; 2) Update "info.rkt"
 ; 3) (define pkg (make-plt))
 ; 4) (system "\"c:\\Program Files\\Racket\\planet\" fileinject orseau ../mred-designer.plt 3 3")

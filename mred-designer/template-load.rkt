@@ -5,7 +5,7 @@
          "mred-plugin.rkt"
          "mred-id.rkt"
          "default-values.rkt"
-         "mreddesigner-misc.rkt" ; for debug-printf
+         "misc.rkt" ; for debug-printf
          racket/gui/base
          framework 
          

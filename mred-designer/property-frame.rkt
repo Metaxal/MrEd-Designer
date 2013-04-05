@@ -24,7 +24,7 @@
 ;; ##################################################################################
 
 
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          "preview-widgets.rkt"
          "properties.rkt"
          "property-widgets.rkt"

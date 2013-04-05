@@ -35,7 +35,7 @@ To force the recompilation of all the widgets, call:
 (require "plugin.rkt"
          "mred-id.rkt"
          "properties.rkt"
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          )
 
 ; A plugin must return an instance of this class

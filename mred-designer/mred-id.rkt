@@ -2,7 +2,7 @@
 
 (require "code-write.rkt"
          "properties.rkt"
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          )
 
 (define/provide current-generate-code (make-parameter #f))

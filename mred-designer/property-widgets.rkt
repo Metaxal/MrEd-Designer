@@ -28,7 +28,7 @@
          "mred-plugin.rkt"
          "tooltip.rkt"
          "widgets.rkt"
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          "mreddesigner-properties-widget.rkt"
          "default-values.rkt"
          )

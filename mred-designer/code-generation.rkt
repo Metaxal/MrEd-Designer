@@ -26,7 +26,7 @@
 
 (require "mred-id.rkt"
          "code-write.rkt"
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          racket/gui/base)
 
 ; Don't print quotes in the beginning of a (pretty-print '(list a b c))

@@ -23,7 +23,7 @@
 ;; #                                                                                #
 ;; ##################################################################################
 
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          "preview-widgets.rkt"
          "toolbox-frame.rkt"
          "property-frame.rkt"

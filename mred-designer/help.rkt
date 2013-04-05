@@ -26,7 +26,7 @@
 ;; ##################################################################################
 
 (require net/sendurl
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          )
   
 (define/provide (help-online-help)

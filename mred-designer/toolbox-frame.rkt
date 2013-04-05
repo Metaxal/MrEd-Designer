@@ -28,8 +28,8 @@
 
 (require "mred-plugin.rkt"
          "plugin.rkt"
-         "mreddesigner-misc.rkt"
-         "mreddesigner-help.rkt"
+         "misc.rkt"
+         "help.rkt"
          "tooltip.rkt"
          "templates.rkt"
          )

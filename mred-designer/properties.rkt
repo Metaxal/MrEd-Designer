@@ -24,7 +24,7 @@
 ;; ##################################################################################
 
 (require "code-write.rkt"
-         "mreddesigner-misc.rkt")
+         "misc.rkt")
 
 ; ************************
 ; * Property Definitions *

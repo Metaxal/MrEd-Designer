@@ -23,7 +23,7 @@
 ;; #                                                                                #
 ;; ##################################################################################
 
-(require "mreddesigner-misc.rkt") ; for write-path
+(require "misc.rkt") ; for write-path
 
 (provide code-write-value 
          code-write%%

@@ -28,9 +28,9 @@
 ;(module mreddesigner-properties-widget mzscheme
 ;  (require (lib "class.rkt")  
 ;           (lib "mred.rkt" "mred")
-;           (file "mreddesigner-misc.rkt")
+;           (file "misc.rkt")
 ;  )
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          racket/gui/base)
 
 ; ------------------------------------------------------------------------------

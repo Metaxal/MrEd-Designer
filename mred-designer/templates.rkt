@@ -1,7 +1,7 @@
 #lang racket
 
 (require racket/gui/base
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          "mred-id.rkt"
          "mred-plugin.rkt"
          "code-generation.rkt"

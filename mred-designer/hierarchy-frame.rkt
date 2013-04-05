@@ -23,7 +23,7 @@
 ;; #                                                                                #
 ;; ##################################################################################
 
-(require "mreddesigner-misc.rkt"
+(require "misc.rkt"
          mrlib/hierlist)
 
 (define/provide hierarchy-frame #f)

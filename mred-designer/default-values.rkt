@@ -27,7 +27,7 @@
          "properties.rkt"
          "code-write.rkt"
          "code-generation.rkt"
-         "mreddesigner-misc.rkt")
+         "misc.rkt")
 
 (provide (all-from-out "properties.rkt"))
 

@@ -72,7 +72,7 @@
          "property-frame.rkt"
          "toolbox-frame.rkt"
          "hierarchy-frame.rkt"
-         "mreddesigner-misc.rkt"
+         "misc.rkt"
          "controller.rkt"
          "templates.rkt"
          )
