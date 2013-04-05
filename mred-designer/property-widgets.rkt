@@ -4,7 +4,7 @@
 ;; # ============================================================================== #
 ;; # property-widgets.rkt                                                           #
 ;; # http://mred-designer.origo.ethz.ch                                             #
-;; # Copyright (C) Laurent Orseau, 2010                                             #
+;; # Copyright (C) Laurent Orseau, 2010-2013                                        #
 ;; # ============================================================================== #
 ;; #                                                                                #
 ;; # This program is free software; you can redistribute it and/or                  #
@@ -29,7 +29,8 @@
          "tooltip.rkt"
          "widgets.rkt"
          "misc.rkt"
-         "mreddesigner-properties-widget.rkt"
+         ;"mreddesigner-properties-widget.rkt"
+         "edit-list.rkt"
          "default-values.rkt"
          )
 
