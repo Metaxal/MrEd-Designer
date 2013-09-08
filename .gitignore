@@ -1,4 +1,4 @@
-compile/
+compiled/
 .unison/
 *.zo
 *~
