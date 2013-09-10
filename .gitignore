@@ -1,4 +1,5 @@
 compiled/
 .unison/
+.@__thumb/
 *.zo
 *~
