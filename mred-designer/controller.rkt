@@ -273,7 +273,9 @@
 ;; Simplified to return #t on success, #f otherwise - kdh 2012-02-29
 (define/provide (load-project file)
   (debug-printf "load-project: ~a~n" file)
-  (parameterize ([current-directory (path-only file)])
+  (debug-printf "current-dir: ~a\n"(current-directory))
+  (parameterize ([current-directory (find-system-path 'orig-dir)
+                                    #;(path-only file)])
     (let ([mids (load-mred file #f)])
       (or
        (and mids

@@ -129,6 +129,8 @@
 (define no-project-loaded #t)
 (for ([arg (current-command-line-arguments)])
   (match arg
+    [(or "-d" "--debug")
+     (set-debug #t)]
     [(regexp ".*\\.med$") 
      (printf "loading project ~a:" arg)
      (set! no-project-loaded #f)
