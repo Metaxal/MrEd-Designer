@@ -62,17 +62,15 @@
 
 (define (module-header)
   (string-append "\
-#lang racket/gui
+#lang racket/base
 
 ;;==========================================================================
 ;;===                Code generated with MrEd Designer " application-version
-                                                         "               ===
+                                                          "              ===
 ;;===              https://github.com/Metaxal/MrEd-Designer              ===
 ;;==========================================================================
 
-") ; add the name of the project and the date ? and the username ?
-; ;;===                 http://mred-designer.origo.ethz.ch                 ===
-  )
+"))
  
 (define (print-requires reqs)
   (display "(require\n")

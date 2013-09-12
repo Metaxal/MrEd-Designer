@@ -273,9 +273,10 @@
 ;; Simplified to return #t on success, #f otherwise - kdh 2012-02-29
 (define/provide (load-project file)
   (debug-printf "load-project: ~a~n" file)
-  (debug-printf "current-dir: ~a\n"(current-directory))
-  (parameterize ([current-directory (find-system-path 'orig-dir)
-                                    #;(path-only file)])
+  (set! file (path->complete-path file (find-system-path 'orig-dir)))
+  (debug-printf "complete path: ~a\n" file)
+  ;(debug-printf "current-dir: ~a\n"(current-directory))
+  (parameterize ([current-directory (path-only file)])
     (let ([mids (load-mred file #f)])
       (or
        (and mids
@@ -303,25 +304,24 @@
                         )])
     ; Simplify return value - kdh 2012-02-29
     (and file
-         (load-project file))
-    ))
+         (load-project file))))
 
 (define/provide (save-project mid file)
   (debug-printf "save-project: enter~n")
-  (begin-busy-cursor)
   (when mid
+    (debug-printf "Saving project in ~a\n" file)
+    (begin-busy-cursor)
     (let ([project-mid (send mid get-top-mred-parent)])
       (send (send (send project-mid get-property 'file) get-prop)
             set-value (path-string->string file))
       (save-template project-mid (->string (send project-mid get-id)) file)
       ;(save-mred-id project-mid file)
       (set-project-changed project-mid #f)
-      ))
-  (end-busy-cursor)
-  (debug-printf "save-project: exit~n")
+      )
+    (end-busy-cursor)
+    (debug-printf "save-project: exit~n"))
   ; specify return value - kdh 2012-07-09      
-  (void)
-  )
+  (void))
 
 (define/provide (controller-save-project [save-as? #f] [mid (get-current-mred-id)])
   (debug-printf "controller-save-project: save-as?:~a mid:~a ~n" save-as? mid)
@@ -350,8 +350,7 @@
 
   (debug-printf "controller-save-project: done~n")
   ; specify return value - kdh 2012-07-09      
-  (void)
-  )
+  (void))
 
 (define (choose-code-file dft-name [base-path #f] [parent-frame #f])
   (let ([base-path (and base-path (normal-case-path (simple-form-path base-path)))]
@@ -414,17 +413,15 @@
                                           #:ask [ask-user? #t])
   (when mid
     (let* ([project-mid (send mid get-top-mred-parent)]
-           ;[proj-file (send project-mid get-property-value 'file)]
-           [base-dir (send project-mid get-project-dir)]; (and proj-file (path-only (string->path proj-file)))]
+           [base-dir (send project-mid get-project-dir)]
            [dft-file (string-append (->string (send project-mid get-id)) ".rkt")]
            [file (if ask-user?
                      (choose-code-file dft-file base-dir toolbox-frame)
-                     dft-file)]
+                     (path->complete-path dft-file base-dir))]
            )
       (when file
-        (parameterize ([current-directory (or base-dir (current-directory))])
-          (with-output-to-file file
-            (λ()(generate-module project-mid))
-            #:exists 'replace)
-          )
+        (debug-printf "Generating code in file ~a\n" file)
+        (with-output-to-file file
+          (λ()(generate-module project-mid))
+          #:exists 'replace)
         ))))

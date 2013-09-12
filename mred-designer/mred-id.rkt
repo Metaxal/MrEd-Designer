@@ -213,12 +213,10 @@
           (send mred-parent get-top-mred-parent)
           this))
     
-    ;; WARNING: SHOULD be a project... (and I SHOULD test for it...)
     (define/public (get-project-dir)
       (let* ([top-mid (get-top-mred-parent)] ; the project-mid
-             [proj-file (send top-mid get-property-value 'file)]
-             [base-dir (and proj-file (path-only (string->path proj-file)))])
-        base-dir))
+             [proj-file (send top-mid get-property-value 'file)])
+        (and proj-file (path-only (string->path proj-file)))))
     
     ; returns the topmost WINDOW of the current hierarchy (a frame%, not a project%)
     (define/public (get-top-level-window-mred-id)
