@@ -1,6 +1,6 @@
 MrEd Designer 3.x
 
-MrEd Designer provides a WYSIWYG interface to create GUI applications for [Racket](http://www.racket-lang.org/) (ex PLT Scheme).
+MrEd Designer is WYSIWYG program to create GUI applications for [Racket](http://www.racket-lang.org/) (ex PLT Scheme).
 
 
 Complete documentation and screenshots: https://github.com/Metaxal/MrEd-Designer/wiki
