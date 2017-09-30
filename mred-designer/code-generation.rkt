@@ -117,6 +117,7 @@
                                     (cons mid all-mred-ids))]
            [requires (send mid get-property-value 'code-requires)]
            [arguments all-options]
+           [module+main `(module+ main (,init-name))]
            )
       (display (module-header))
       (printf ";;; Call (~a) with optional arguments to this module\n\n" init-name)
@@ -133,6 +134,8 @@
         post-codes
        ;shows
         ))
+       (newline)
+       (pretty-print module+main)
       
       ; restore original parents:
       (for-each (λ(c cp)(send c set-mred-parent cp))
