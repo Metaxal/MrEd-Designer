@@ -3,6 +3,7 @@
 ;; ##################################################################################
 ;; # ============================================================================== #
 ;; # MrEd Designer - help.rkt                                                       #
+;; # https://github.com/Metaxal/MrEd-Designer                                       #
 ;; # http://mreddesigner.lozi.org                                                   #
 ;; # Copyright (C) Lozi Jean-Pierre, 2004 - mailto:jean-pierre@lozi.org             #
 ;; # Copyright (C) Peter Ivanyi, 2007                                               #
@@ -54,59 +55,52 @@
 (provide help-about-dialog)
 (define (help-about-dialog)
   ;; Let's build the whole dialog using a let*
-  (let*  ((dialog (new dialog% 
-                       (label (string-append "About " application-name "..."))
-                       (parent #f) 
-                       (width 510) 
-                       (height 259)))
-          ;; The main vertical pane...
-          (vertical-pane (new vertical-pane% (parent dialog) (border 5)))
-          ;; We call the canvas class...
-          (canvas (new canvas% 
-                       (parent vertical-pane) 
-                       (style '(border)) 
-                       (min-width 510) 
-                       (min-height 259)
-                       (paint-callback
-                         (lambda (canvas dc)
-                           (let
-                             ((k-logo (make-object bitmap% (build-path "images" "about.png") 'png #f))
-                              (k-font (make-object font% 11 'system 'normal 'light #f 'smoothed #t))
-                             )
-                             (send dc draw-bitmap k-logo 0 0 'solid (make-object color% 0 0 0) #f)
-                             (send dc set-font k-font)
-                             (send dc draw-text (string-append " - Version " application-version) 354 183)
-                             (send dc draw-text "(C) Jean-Pierre Lozi, 2004"   41 200)
-                             (send dc draw-text "(C) Peter Ivanyi, 2007, 2008" 41 220)
-                             (send dc draw-text "(C) Laurent Orseau, 2010-2013"     41 240)
-                           )
-                         )
-                       )
-                  )
-          )
-          ;; A very, very summed up information about the license...
-          (message1 (new message% (label "This software is distributed under the terms of the General Public License (GPL),") (parent vertical-pane)))
-          (message2 (new message% (label "either version 2 of the license, or (at your option) any later version.") (parent vertical-pane)))
-          ;; The buttons' pane...
-          (horizontal-pane (new horizontal-panel% (parent vertical-pane) (alignment '(center center))))
-          ;; The 3 buttons...
-          (button (new button% (label "Contact...") (min-width 166)(parent horizontal-pane)
-                       (callback (lambda (button control-event)
-                                   (send-url (mail-to
-                                              '("laurent" "orseau")
-                                              '("gmail" "com"))
-                                             )))))
-                                   ;(send-url "mailto:pivanyi@freemail.hu")))))
-          (button (new button% (label "Website...") (min-width 166)(parent horizontal-pane)
-                       (callback (lambda (button control-event)
-                                   (send-url website)))))
-          (button (new button% (label "Close") (min-width 166)(parent horizontal-pane)
-                       (callback (lambda (button control-event)
-                                   (send dialog show #f))))))
-    ;; The main function body
-    (send dialog center)
-    (send dialog show #t)))
-
-
-;) ;end of module
-
+  (define dialog
+    (new dialog% 
+         (label (string-append "About " application-name "..."))
+         (parent #f) 
+         (width 510) 
+         (height 259)))
+  ;; The main vertical pane...
+  (define vertical-pane (new vertical-pane% (parent dialog) (border 5)))
+  ;; We call the canvas class...
+  (define canvas
+    (new canvas% 
+         (parent vertical-pane) 
+         (style '(border)) 
+         (min-width 510) 
+         (min-height 259)
+         (paint-callback
+          (lambda (canvas dc)
+            (let
+                ([k-logo (make-object bitmap% (build-path "images" "about.png") 'png #f)]
+                 [k-font (make-object font% 11 'system 'normal 'light #f 'smoothed #t)])
+              (send dc draw-bitmap k-logo 0 0 'solid (make-object color% 0 0 0) #f)
+              (send dc set-font k-font)
+              (send dc draw-text (string-append " - Version " application-version) 354 183)
+              (send dc draw-text "(C) Jean-Pierre Lozi, 2004"   41 200)
+              (send dc draw-text "(C) Peter Ivanyi, 2007, 2008" 41 220)
+              (send dc draw-text "(C) Laurent Orseau, 2010-2017"     41 240)
+              )))))
+  ;; A very, very summed up information about the license...
+  (define message1 (new message% (label "This software is distributed under the terms of the General Public License (GPL),") (parent vertical-pane)))
+  (define message2 (new message% (label "either version 2 of the license, or (at your option) any later version.") (parent vertical-pane)))
+  ;; The buttons' pane...
+  (define horizontal-pane (new horizontal-panel% (parent vertical-pane) (alignment '(center center))))
+  ;; The 3 buttons...
+  (new button% (label "Contact...") (min-width 166)(parent horizontal-pane)
+       (callback (lambda (button control-event)
+                   (send-url (mail-to
+                              '("laurent" "orseau")
+                              '("gmail" "com"))
+                             ))))
+  ;(send-url "mailto:pivanyi@freemail.hu")))))
+  (new button% (label "Website...") (min-width 166)(parent horizontal-pane)
+       (callback (lambda (button control-event)
+                   (send-url website))))
+  (new button% (label "Close") (min-width 166)(parent horizontal-pane)
+       (callback (lambda (button control-event)
+                   (send dialog show #f))))
+  ;; The main function body
+  (send dialog center)
+  (send dialog show #t))

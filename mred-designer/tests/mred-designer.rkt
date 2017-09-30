@@ -2,7 +2,7 @@
 
 ;;==========================================================================
 ;;===                Code generated with MrEd Designer 3.0               ===
-;;===                 http://mred-designer.origo.ethz.ch                 ===
+;;===                 https://github.com/Metaxal/MrEd-Designer           ===
 ;;==========================================================================
 
 ;;; Call (mred-designer-init) with optional arguments to this module

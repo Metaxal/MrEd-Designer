@@ -3,7 +3,7 @@
 ;; ##################################################################################
 ;; # ============================================================================== #
 ;; # MrEd Designer - main.rkt                                                       #
-;; # http://mred-designer.origo.ethz.ch                                             #
+;; # https://github.com/Metaxal/MrEd-Designer                                       #
 ;; # Copyright (C) Lozi Jean-Pierre, 2004 - mailto:jean-pierre@lozi.org             #
 ;; # Copyright (C) Peter Ivanyi, 2007                                               #
 ;; # Copyright (C) Laurent Orseau, 2010                                             #
