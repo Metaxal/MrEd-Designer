@@ -112,7 +112,7 @@
     (make-menu-item "&Save Project"            #\S  save-project-callback)
     (make-menu-item "S&ave Project as..."      'f12 (λ _ (save-project-callback #t)))
     (make-separator)
-    (make-menu-item "&Generate Scheme File..." 'f5  generate-code-callback)
+    (make-menu-item "&Generate Racket File..." 'f5  generate-code-callback)
     (make-separator)
     (make-menu-item "&Close Project"           #\W  close-project-callback)
     (make-separator)
