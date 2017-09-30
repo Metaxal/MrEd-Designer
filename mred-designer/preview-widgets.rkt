@@ -33,7 +33,7 @@
 
 (define/provide (set-current-mred-id mid)
   (debug-printf "set-current-mred-id:~a\n" mid)
-  (debug-printf "current widget set:~a\n" (send mid get-id))
+  (debug-printf "current widget set:~a\n" (and mid (send mid get-id)))
   (set! current-mred-id mid))
 
 ;;; Returns a duplicate of the given widget with all its properties and id.
