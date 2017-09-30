@@ -31,8 +31,8 @@
   [style (prop:popup
           (prop:some-of '(no-resize-border 
                           no-caption no-system-menu hide-menu-bar
-                          mdi-parent mdi-child
-                          toolbar-button float metal)
+                          toolbar-button float metal
+                          fullscreen-button fullscreen-aux)
                         '()))]
   [enabled #t]	 
   [border 0]	 
