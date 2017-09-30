@@ -20,7 +20,7 @@ To start MrEd Designer, either type in the interactions window in DrRacket:
 ```
 (require mred-designer)
 ```
-or from the command line:
+or from the command line (recommended):
 ```
 racket -l mred-designer
 ```
