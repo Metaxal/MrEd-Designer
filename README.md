@@ -5,7 +5,7 @@ MrEd Designer is WYSIWYG program to create GUI applications for [Racket](http://
 
 Complete documentation and screenshots: https://github.com/Metaxal/MrEd-Designer/wiki
 
-## Installation and usage
+## Installation
 
 In DrRacket: Select `File > Install a package...` and choose `mred-designer`.
 
