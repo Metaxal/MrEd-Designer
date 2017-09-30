@@ -247,7 +247,7 @@
   (let ([project-mid 
          (controller-create-mred-id (get-widget-plugin 'project) #f)])
     (set-project-changed project-mid #f) ; empty project are not "changed" (don't ask for saving it)
-    ))
+    (controller-select-mred-id project-mid)))
 
 ;; Loads the mred-id/widget hierarchy from the file
 ;; and place it at the top (no parent)
@@ -265,7 +265,8 @@
               (send (send (send proj-mid get-property 'file) get-prop)
                     set-value (path->string file))
               (set-project-changed proj-mid #f)
-              (debug-printf "load-project: exit~n")
+              (controller-select-mred-id proj-mid)
+              #;(debug-printf "load-project: exit~n")
               ; Simplify return value - kdh 2012-02-29
               ; return value:
               #t))
