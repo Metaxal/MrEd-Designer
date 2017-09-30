@@ -8,7 +8,7 @@
 ;;; Call (mred-designer-init) with optional arguments to this module
 
 (require
- framework
+ #;framework
  )
 
 (provide)

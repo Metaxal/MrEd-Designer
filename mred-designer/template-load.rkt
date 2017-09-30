@@ -1,13 +1,14 @@
 #lang racket
 
-; For template loading
+; Do not remove!
+; All of these are needed for template loading
 (require "properties.rkt"
          "mred-plugin.rkt"
          "mred-id.rkt"
          "default-values.rkt"
          "misc.rkt" ; for debug-printf
          racket/gui/base
-         framework 
+         #;framework
          
          ; Yurk! Specific behavior!
          ; This SHOULD be generalized to all plugins!
@@ -32,10 +33,6 @@
           (let ([exp (read)])
             ;(printf "read: ~a~n" exp)
             (if (eof-object? exp)
-                (begin
-                  (printf "template-load-file: load done\n")
-                  last-exp
-                  )
-                (loop (eval exp ns)))))
-      ))
-  )
+                (begin (printf "template-load-file: load done\n")
+                       last-exp)
+                (loop (eval exp ns))))))))

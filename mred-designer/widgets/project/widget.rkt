@@ -22,6 +22,6 @@
   [code-file #f] ; file to generate the code to. Should be relative to file ?
   [changed #f] ; has the project changed since last save?
   ; list of modules that the generated code needs:
-  [code-requires '("framework" "racket/gui/base" "racket/class" "racket/list")] 
+  [code-requires '(#;"framework" "racket/gui/base" "racket/class" "racket/list")] 
   [runtime-paths? #f] ; do we use runtime-paths in the generated code?
   ))

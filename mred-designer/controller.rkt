@@ -42,12 +42,10 @@
 (define/provide (controller-exit-application)
   (debug-printf "controller-exit-application:~n")
   (let ([projects (map-send user-data (send hierarchy-widget get-items))])
-    (for-each project-changed-save projects)
-    )
+    (for-each project-changed-save projects))
   (close-window hierarchy-frame)
   (close-window property-frame)
-  (close-window toolbox-frame)
-  )
+  (close-window toolbox-frame))
 
 (define/provide (controller-show-property-frame)
   (debug-printf "controller-show-property-frame:~n")
@@ -64,15 +62,13 @@
   (select-mred-id mid)
   (hierarchy-select mid)
   (update-property-frame mid)
-  (update-toolbox-frame mid)
-  )
+  (update-toolbox-frame mid))
 
 (define/provide (controller-replace-current-widget)
   (debug-printf "controller-replace-current-widget: enter~n")
   (send (get-current-mred-id) replace-widget)
   (send hierarchy-widget update-current-mred-id)
-  (debug-printf "controller-replace-current-widget: exit~n")
-  )
+  (debug-printf "controller-replace-current-widget: exit~n"))
 
 (define/provide (controller-create-mred-id plugin [mred-parent (get-current-mred-id)])
   (let* ([new-mred-id (send plugin new-mred-id mred-parent)])
@@ -83,43 +79,37 @@
       ; Call add-children wrapper for add-child - kdh 2012-02-29      
       (if mred-parent
           (send hierarchy-widget add-children new-mred-id)
-          (send hierarchy-widget add-children new-mred-id #f))
-      )
+          (send hierarchy-widget add-children new-mred-id #f)))
 
     (debug-printf "controller-replace-current-widget: exit~n")
 
     ; return:
-    new-mred-id
-    ))
+    new-mred-id))
 
 (define/provide (controller-delete-mred-id [mid (get-current-mred-id)])
   (debug-printf "controller-delete-mred-id: mid:~a~n" mid)
   (when mid
     (let ([mid-parent (send mid get-mred-parent)])
       (unless mid-parent
-        (project-changed-save mid)
-        )
+        (project-changed-save mid))
       (send mid delete)
       (project-changed! mid)
       (send hierarchy-widget delete-mred-id mid)
-      (controller-select-mred-id mid-parent)
-      )))
+      (controller-select-mred-id mid-parent))))
 
 (define/provide (controller-move-up)
   (let* ([mid (get-current-mred-id)])
     (debug-printf "controller-move-up:~n")
     (send mid move-up)
     (project-changed!)
-    (send hierarchy-widget move-up)
-    ))
+    (send hierarchy-widget move-up)))
   
 (define/provide (controller-move-down)
   (let* ([mid (get-current-mred-id)])
     (debug-printf "controller-move-down:~n")
     (send mid move-down)
     (project-changed!)
-    (send hierarchy-widget move-down)
-    ))
+    (send hierarchy-widget move-down)))
 
 ; *************
 ; * Templates *
@@ -164,9 +154,7 @@
              (debug-printf "load-mred: exit~n")
 
              ; return value:
-             mids
-             )))
-       ))
+             mids)))))
          
 (define/provide (controller-load-template file [parent-mid (get-current-mred-id)])
   (debug-printf "controller-load-template: ~a ~a~n" file parent-mid)
@@ -182,8 +170,7 @@
     )
   (debug-printf "controller-save-template: exit~n")
   ; specify return value - kdh 2012-07-09      
-  (void)
-  )
+  (void))
 
 (define/provide (controller-replace-current-template file)
   (debug-printf "controller-replace-current-template: file:~a~n" file)
@@ -191,35 +178,29 @@
   ;(controller-update-templates)
   (debug-printf "controller-replace-current-template: exit~n")
   ; specify return value - kdh 2012-07-09      
-  (void)
-  )
+  (void))
   
 (define/provide (controller-delete-template file)
   (debug-printf "controller-delete-template:~n")
   (delete-template file)
-  (controller-update-templates)
-  )
+  (controller-update-templates))
 
 (define/provide (controller-update-templates)
   (make-template-dict)
-  (toolbox-update-template-choices)
-  )
+  (toolbox-update-template-choices))
 
 ;; Copy/Cut/Paste a mred-id and its children
 (define/provide (controller-copy)
-  (controller-save-template "Clipboard" (template-file "clipboard"))
-  )
+  (controller-save-template "Clipboard" (template-file "clipboard")))
 
 (define/provide (controller-cut)
   (controller-copy)
   (controller-delete-mred-id)
-  (project-changed!)
-  )
+  (project-changed!))
 
 (define/provide (controller-paste)
   (controller-load-template (template-file "clipboard"))
-  (project-changed!)
-  )
+  (project-changed!))
 
 (define/provide (controller-show/hide)
   (send (get-current-mred-id) show/hide))
@@ -338,15 +319,9 @@
                                '()
                                '(("MrEd Designer Project (.med)"  "*.med"))
                                ))]
-           [file (and file (path-replace-suffix file ".med"))]
-;           [filestr (and file (->string file))]
-;           [filestr (if (and filestr (not (regexp-match "\\.med$" filestr)))
-;                     (string-append filestr ".med")
-;                     filestr)]
-           )
+           [file (and file (path-replace-suffix file ".med"))])
       (when file
-        (save-project project-mid file))
-      ))
+        (save-project project-mid file))))
 
   (debug-printf "controller-save-project: done~n")
   ; specify return value - kdh 2012-07-09      
@@ -363,20 +338,7 @@
                          '(("Racket (.rkt)"  "*.rkt")
                            ("Any"           "*.*")))])
     (and file
-         (path->string file)
-;        (if base-path
-;            (let ([file (normal-case-path (simple-form-path file))]
-;                  [relative (message-box "Relative or global path?" 
-;                                         "Save file as relative to project path?"
-;                                         parent-frame
-;                                         '(yes-no))]
-;                  )
-;              (path->string 
-;               (if (symbol=? 'yes relative)
-;                   (find-relative-path base-path file)
-;                   file)))
-;            (path->string file))
-        )))
+         (path->string file))))
 
 ;; Like frame:text% but without exiting the app when closing the window
 (define no-exit-frame:text%
@@ -406,8 +368,7 @@
     (define txt (send f get-editor))
     (send txt insert
           (with-output-to-string (λ _ (generate-module project-mid))))
-    (send f show #t)    
-    )) 
+    (send f show #t))) 
 
 (define/provide (controller-generate-code [mid (get-current-mred-id)]
                                           #:ask [ask-user? #t])
@@ -423,5 +384,4 @@
         (debug-printf "Generating code in file ~a\n" file)
         (with-output-to-file file
           (λ()(generate-module project-mid))
-          #:exists 'replace)
-        ))))
+          #:exists 'replace)))))

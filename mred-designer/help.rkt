@@ -78,9 +78,9 @@
               (send dc draw-bitmap k-logo 0 0 'solid (make-object color% 0 0 0) #f)
               (send dc set-font k-font)
               (send dc draw-text (string-append " - Version " application-version) 354 183)
-              (send dc draw-text "(C) Jean-Pierre Lozi, 2004"   41 200)
-              (send dc draw-text "(C) Peter Ivanyi, 2007, 2008" 41 220)
-              (send dc draw-text "(C) Laurent Orseau, 2010-2017"     41 240)
+              (send dc draw-text "(C) Jean-Pierre Lozi, 2004"    41 200)
+              (send dc draw-text "(C) Peter Ivanyi, 2007, 2008"  41 220)
+              (send dc draw-text "(C) Laurent Orseau, 2010-2017" 41 240)
               )))))
   ;; A very, very summed up information about the license...
   (define message1 (new message% (label "This software is distributed under the terms of the General Public License (GPL),") (parent vertical-pane)))
