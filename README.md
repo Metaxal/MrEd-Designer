@@ -7,7 +7,7 @@ Complete documentation and screenshots: https://github.com/Metaxal/MrEd-Designer
 
 ## Installation and usage
 
-In DrRacket: Select `File > Install a package...`.
+In DrRacket: Select `File > Install a package...` and choose `mred-designer`.
 
 Or from the command line, type:
 ```
