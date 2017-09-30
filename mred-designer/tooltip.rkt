@@ -3,6 +3,7 @@
 ;; ##################################################################################
 ;; # ============================================================================== #
 ;; # MrEd Designer - tooltip.rkt                                                    #
+;; # https://github.com/Metaxal/MrEd-Designer                                       #
 ;; # http://mreddesigner.lozi.org                                                   #
 ;; # Copyright (C) Lozi Jean-Pierre, 2004 - mailto:jean-pierre@lozi.org             #
 ;; # Copyright (C) Peter Ivanyi, 2007                                               #
@@ -27,8 +28,7 @@
 
 ;;; This module provides a tooltip%% mixin that can be used on buttons, checkboxes, etc.
 
-(require "misc.rkt"
-         )
+(require "misc.rkt")
 
 ; This is the tooltip message which appears in a tooltip window
 (define tooltip-label%
@@ -47,12 +47,10 @@
       (unless (equal? text new-text)
         (set! text new-text)  ; set new text
         (update-min-sizes)    ; recalculate the size of the widget and set it
-        (on-paint))           ; redraw
-      )          
-    
+        (on-paint)))          ; redraw
+                    
     (define/public (get-label-text)
-      text
-      )
+      text)
     
     (define label-inset 1)
     (define black-color (make-object color% "BLACK"))
@@ -129,8 +127,7 @@
     ; widget is not resizeable
     (stretchable-width #f)
     (stretchable-height #f)
-    )
-  )
+    ))
 
 (define/provide tooltip<%> (interface () ))
 (define/provide tooltip%%
@@ -138,9 +135,7 @@
     ; the class must be a subwindow<%>
     ; and it is then a tooltip<%>
     
-    (init-field 
-     (tooltip-text " ")
-     )
+    (init-field (tooltip-text " "))
     
     (define start-timer #f)
     ; this is the timer to make the tooltip window to disappear
@@ -153,98 +148,59 @@
     (define (tooltip:clear)
       (when start-timer
         (send start-timer stop)
-        (set! start-timer #f)
-        )
+        (set! start-timer #f))
       (when timeout-timer
         (send timeout-timer stop)
-        (set! timeout-timer #f)
-        )
-;;      (when (and tooltip shown?)
+        (set! timeout-timer #f))
       (when tooltip
         (send tooltip show #f)
-        (set! tooltip #f)
-;;        (set! shown? #f)
-        )
-      (set! shown? #f) ;; always clear the shown flag
-      )
+        (set! tooltip #f))
+      (set! shown? #f)) ;; always clear the shown flag
     
     (define (tooltip:setup)
-;;      (send start-timer stop)
-;;      (set! start-timer #f)
       (tooltip:clear) ;; clear the previous tooltip completely
-      (let
-          ((x (inexact->exact (round (* (send this get-width) 0.5))))
-           (y (+ (send this get-height) 1))
-           (text tooltip-text)
-           )
-        (let-values
-            (((sx sy) (send this client->screen x y)))
-          (let*
-              ((frame (new frame%
-                           (parent #f)
-                           (label "")
-                           (stretchable-height #f)
-                           (stretchable-width #f)
-                           (x sx)
-                           (y sy)
-                           (width 46)
-                           (height 17)
-                           (border 0)
-                           (style '(no-system-menu no-caption no-resize-border float))
-                           )
-                      )
-               (message (new tooltip-label% (parent frame) (text text)))
-               )
+      (let ([x (inexact->exact (round (* (send this get-width) 0.5)))]
+            [y (+ (send this get-height) 1)]
+            [text tooltip-text])
+        (let-values ([(sx sy) (send this client->screen x y)])
+          (let* [(frame (new frame%
+                             (parent #f)
+                             (label "")
+                             (stretchable-height #f)
+                             (stretchable-width #f)
+                             (x sx)
+                             (y sy)
+                             (width 46)
+                             (height 17)
+                             (border 0)
+                             (style '(no-system-menu no-caption no-resize-border float))))
+                 (message (new tooltip-label% (parent frame) (text text)))]
             (set! tooltip frame)
             (set! timeout-timer (new timer% (notify-callback tooltip:clear)
-;;                                            (interval        2500)
                                             (interval        4500)
-                                            (just-once?      #t)
-                                            )
-                  )
+                                            (just-once?      #t)))
             (send tooltip show #t)
-            (set! shown? #t)
-            )
-          )
-        )
-      )
+            (set! shown? #t)))))
     
     ;; Warning! 
     ;; If this method is overriden in a child class,
     ;; it must be call with (super on-subwindow-event w e) 
     (define/override (on-subwindow-event w e)
-      (cond
-        ( (equal? (send e get-event-type) 'enter)
-          (when (not shown?)
-              (set! start-timer (new timer% (notify-callback tooltip:setup)
-;;                                     (interval        600)
-                                     (interval        1200)
-                                     (just-once?      #t)))
-              )
-          )
-        ( (member (send e get-event-type) '(leave))
-          (tooltip:clear)
-;;          (print "leave")
-          )
-        ( (member (send e get-event-type) '(left-down left-up))
-          (tooltip:clear)
-          )
-        ;          ( (equal? (send e get-event-type) 'motion)
-        ;          )
-        )
-      
-      ;        (display (send e get-event-type))(newline)
-      
+      (cond [(equal? (send e get-event-type) 'enter)
+             (when (not shown?)
+               (set! start-timer (new timer% (notify-callback tooltip:setup)
+                                      (interval        1200)
+                                      (just-once?      #t))))]
+            [(member (send e get-event-type) '(leave))
+             (tooltip:clear)]
+            [(member (send e get-event-type) '(left-down left-up))
+             (tooltip:clear)])
       ; also call the event of the above class!
       (super on-subwindow-event w e) 
-      
       ; this is important, so we pass the event further
-      #f
-      )
+      #f)
     
-    (super-new)
-    )
-  )
+    (super-new)))
 
 (define/provide tooltip-button%    (tooltip%% button%))
 (define/provide tooltip-check-box% (tooltip%% check-box%))
