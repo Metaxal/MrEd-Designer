@@ -29,7 +29,7 @@
 
 ;; Defines a function or a variable and provides it at the same time.
 (provide define/provide)
-(define-syntax define/provide 
+(define-syntax define/provide
   (syntax-rules ()
     ; function case:
     [(_ (name args ... . l) body ...)
@@ -43,7 +43,7 @@
 
 ;; Current version of MrEd Designer
 (define/provide application-version-maj 3)
-(define/provide application-version-min 12)
+(define/provide application-version-min 13)
 (define/provide application-version (format "~a.~a" application-version-maj application-version-min))
 (define/provide application-name "MrEd Designer")
 (define/provide application-name-version
@@ -56,7 +56,7 @@
 (define-syntax-rule (define/provide-mock (name args ...) body ...)
   (begin (provide name)
          (define (name args ...)
-           (printf "~a: NOT IMPLEMENTED ; arg-list: ~a\n" 
+           (printf "~a: NOT IMPLEMENTED ; arg-list: ~a\n"
                    'name
                    (list args ...)))))
 
@@ -95,11 +95,11 @@
 (define/provide (symbol->keyword sym)
   (string->keyword (symbol->string sym)))
 
-(define/provide (assoc-ref l key [default-val 
+(define/provide (assoc-ref l key [default-val
                                    (λ()(error "key not found in assoc-ref:" key))])
   (let ([v (assoc key l)])
-    (if v 
-        (second v) 
+    (if v
+        (second v)
         (if (procedure? default-val)
             (default-val)
             default-val)
@@ -175,22 +175,22 @@
         (append (reverse (rest rleft))
                 (list e)
                 (cons (first rleft) (rest right))))))
-        
+
 (define/provide (list-move-right l e)
   (reverse (list-move-left (reverse l) e)))
 
 (define/provide (text-split-with-empty str ch empty)
-  (let* 
+  (let*
       ((idx (string-length str))
        (last #f)
        (slist '())
        )
     (do () ( (not (>= idx 0)) )
       (set! last idx)
-      (do () ( (not (and (> idx 0) 
-                         (not (or (and (char? ch) 
+      (do () ( (not (and (> idx 0)
+                         (not (or (and (char? ch)
                                        (char=? (string-ref str (- idx 1)) ch))
-                                  (and (list? ch) 
+                                  (and (list? ch)
                                        (member (string-ref str (- idx 1)) ch))
                                   )
                               )
@@ -249,7 +249,7 @@
 
 ;; Writes a path constructor from a path
 (define/provide (write-path p)
-  (cons 'build-path 
+  (cons 'build-path
         (map (λ(p-elt)(cond [(symbol? p-elt) (list 'quote p-elt)]
                             [(absolute-path? p-elt) (path->string p-elt)]
                             [else (path-element->string p-elt)]))
@@ -262,7 +262,7 @@
 '(build-path 'same 'up "a" "b")
 |#
 
-;; Used in properties.rkt (prop:file%) and code-generation.rkt 
+;; Used in properties.rkt (prop:file%) and code-generation.rkt
 (define/provide use-runtime-paths? (make-parameter #f))
 
 ;; What is the mid being processed?
@@ -285,9 +285,9 @@
 (provide try)
 (define-syntax try
   (syntax-rules (catch finally)
-    [(try 
+    [(try
       try-body ...
-      (catch 
+      (catch
           [exn exn-handler] ...
         )
       (finally
@@ -310,7 +310,7 @@
 ;; (map get-value list-of-valued-objects)
 ;; (map (set-value 10) list-of-valued-objects)
 (provide map-send)
-(define-syntax map-send 
+(define-syntax map-send
   (syntax-rules ()
     [(_ (arg ...) l)
      (map (λ(x)(send x arg ...)) l)]
@@ -319,7 +319,7 @@
     ))
 
 (provide for-each-send)
-(define-syntax for-each-send 
+(define-syntax for-each-send
   (syntax-rules ()
     [(_ (arg ...) l)
      (for-each (λ(x)(send x arg ...)) l)]
@@ -333,11 +333,11 @@
   (cond [(syntax? x) (->string (syntax->datum x))]
         [else (format "~a" x)]
         ))
-  
+
 ;; Turns all the arguments into strings, append them
 ;; And return the corresponding symbol.
 (define-for-syntax (symbol-append* . args)
-  (string->symbol 
+  (string->symbol
    (apply string-append (map ->string args))))
 
 
