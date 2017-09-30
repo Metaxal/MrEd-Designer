@@ -2,7 +2,7 @@ MrEd Designer 3.x
 
 Create Racket GUI applications easily.
 
-Documentation: https://github.com/Metaxal/MrEd-Designer/wiki
+Documentation and screenshots: https://github.com/Metaxal/MrEd-Designer/wiki
 
 ## Installation and usage
 
