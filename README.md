@@ -10,18 +10,18 @@ Complete documentation and screenshots: https://github.com/Metaxal/MrEd-Designer
 In DrRacket: Select `File > Install a package...` and choose `mred-designer`.
 
 Or from the command line, type:
-```
+```shell
 raco pkg install mred-designer
 ```
 
 ## Quick Start
 
 To start MrEd Designer, either type in the interactions window in DrRacket:
-```
+```racket
 (require mred-designer)
 ```
 or from the command line (recommended):
-```
+```shell
 racket -l mred-designer
 ```
 
