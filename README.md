@@ -22,4 +22,4 @@ or from the command line:
 $ racket -l mred-designer
 ```
 
-Now refer to the [wiki](https://github.com/Metaxal/MrEd-Designer/wiki/User's-Documentation) for a quick start.
+Now refer to the [wiki](https://github.com/Metaxal/MrEd-Designer/wiki/User's-Documentation) for a [quick start](https://github.com/Metaxal/MrEd-Designer/wiki/User's-Documentation#quick-start).
