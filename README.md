@@ -36,6 +36,10 @@ MrEd Designer starts with an empty project.
 4. Click on `File > Generate Racket file...` and save the code to some place, say in `my-project-GUI.rkt`. (Note that this only generates a Racket file but does not save your MrEd Designer project for further editing--use `File > Save Project` for this.) 
 5. Now, either open `my-project-GUI.rkt` in DrRacket and execute it, or call on the command line with `racket my-project-GUI.rkt`. You should see the frame that you have created.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/Metaxal/MrEd-Designer/master/mred-designer/images/screenshots/click-me-frame.png" alt="A frame with a button">
+</p>
+
 ## Creating your program logic
 
 Once `my-project-GUI.rkt` is generated, you can write your program logic in a separate module, say `my-project-logic.rkt` (here we assume the two files are in the same directory).
@@ -49,7 +53,7 @@ Write the following code in this new file:
  (λ(bt ev)
    (send bt set-label "It works!")))
 ```
-Make sure you change the numbers accordingly (see inside `my-project-GUI.rkt`), or better yet, in MrEd Designer change the *names* of the project and the button to something more meaningful in the Properties Panel (don't forget to click `Apply&Update Preview` and then `File > Generate Racket file...`).
+Make sure you change the numbers accordingly (see inside `my-project-GUI.rkt`), or better yet in MrEd Designer change the *names* of the project and the button to something more meaningful in the Properties Panel (don't forget to click `Apply&Update Preview` and then `File > Generate Racket file...`).
 
 > Do not modify the file `my-project-GUI.rkt` manually, as you will likely re-generate this file several times from within MrEd Designer, thus overwriting any change you may have done!
 
