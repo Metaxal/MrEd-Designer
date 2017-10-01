@@ -59,4 +59,9 @@ Make sure you change the numbers accordingly (see inside `my-project-GUI.rkt`), 
 
 Execute `my-project-logic.rkt`, the frame and button should appear. Click on the button. The button's label should now say "It works!".
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/Metaxal/MrEd-Designer/master/mred-designer/images/screenshots/click-me-frame.png" alt="A frame with a button">
+ &rarr;
+<img src="https://raw.githubusercontent.com/Metaxal/MrEd-Designer/master/mred-designer/images/screenshots/it-works-frame.png" alt="A frame with a button">
+</p>
 
