@@ -51,7 +51,7 @@ Write the following code in this new file:
 ```
 Make sure you change the numbers accordingly (see inside `my-project-GUI.rkt`), or better yet, in MrEd Designer change the *names* of the project and the button to something more meaningful in the Properties Panel (don't forget to click `Apply&Update Preview` and then `File > Generate Racket file...`).
 
-> _Do not modify the file `my-project-GUI.rkt` manually, as you will likely re-generate this file several times from within MrEd Designer, thus overwriting any change you may have done!_
+> Do not modify the file `my-project-GUI.rkt` manually, as you will likely re-generate this file several times from within MrEd Designer, thus overwriting any change you may have done!
 
 Execute `my-project-logic.rkt`, the frame and button should appear. Click on the button. The button's label should now say "It works!".
 
