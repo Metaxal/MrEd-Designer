@@ -36,6 +36,10 @@ MrEd Designer starts with an empty project.
 4. Click on `File > Generate Racket file...` and save the code to some place, say in `my-project-GUI.rkt`. (Note that this only generates a Racket file but does not save your MrEd Designer project for further editing--use `File > Save Project` for this.) 
 5. Now, either open `my-project-GUI.rkt` in DrRacket and execute it, or call on the command line with `racket my-project-GUI.rkt`. You should see the frame that you have created.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/Metaxal/MrEd-Designer/master/mred-designer/images/screenshots/click-me-frame.png" alt="A frame with a button">
+</p>
+
 ## Creating your program logic
 
 Once `my-project-GUI.rkt` is generated, you can write your program logic in a separate module, say `my-project-logic.rkt` (here we assume the two files are in the same directory).
