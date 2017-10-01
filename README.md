@@ -4,7 +4,7 @@ MrEd Designer is WYSIWYG program to create GUI applications for [Racket](http://
 
 **Design principle:** The user should not have to modify the generated code manually. (Because this code is likely to be overwritten regularly.) If you do, then file an [issue](https://github.com/Metaxal/MrEd-Designer/issues).
 
-Documentation and screenshots: https://github.com/Metaxal/MrEd-Designer/wiki
+**Documentation and screenshots:** https://github.com/Metaxal/MrEd-Designer/wiki
 
 If you face difficulties with MrEd Designer or for any other comment you can contact me (laurent orseau gmail com) or file an [issue](https://github.com/Metaxal/MrEd-Designer/issues).
 
