@@ -40,9 +40,9 @@ MrEd Designer starts with an empty project.
 <img src="https://raw.githubusercontent.com/Metaxal/MrEd-Designer/master/mred-designer/images/screenshots/click-me-frame.png" alt="A frame with a button">
 </p>
 
-## Creating your program logic
+## Writing your program's logic
 
-Once `my-project-GUI.rkt` is generated, you can write your program logic in a separate module, say `my-project-logic.rkt` (here we assume the two files are in the same directory).
+Once `my-project-GUI.rkt` is generated, you can write your program logic in a *separate* file, say `my-project-logic.rkt` (here we assume the two files are in the same directory).
 Write the following code in this new file:
 ```racket
 #lang racket
