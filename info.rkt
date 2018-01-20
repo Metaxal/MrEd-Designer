@@ -8,3 +8,6 @@
     "planet-lib"
     "rackunit-lib"
    ))
+
+(define test-omit-paths
+  '("mred-designer/main.rkt"))

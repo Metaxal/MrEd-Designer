@@ -32,8 +32,6 @@
          make-code-write-stub
          )
 
-;;; Needs MzScheme 4.2.4 at least (for `this%')
-
 ;;; This module provides bindings to make class instances
 ;;; be able to write code that when evaluated generates a
 ;;; object with the same values as the written one.
@@ -60,12 +58,16 @@
   
 ;; Turns a '<class:something%> into 'something%
 (define (class-symbol cl)
-  (let ([str (format "~a" cl)])
-    (string->symbol
-     (substring str
-                8
-                (- (string-length str) 1)))))
+  (string->symbol
+   (substring
+    (symbol->string
+     (vector-ref (struct->vector cl) 0))
+    7)))
 
+;; We must use an assoc to keep the correct order.
+;; Note that we cannot use letrec instead of let* in code-write-value
+;; as it would (also) raise a variable exception if the definitions are not
+;; in the correct order.
 (define current-code-dict (make-parameter #f))
 (define (make-code-dict) '())
 (define (code-set! key val)
@@ -75,8 +77,8 @@
 (define (code-ref key proc/val)
   (dict-ref (current-code-dict) key 
             (if (procedure? proc/val) (proc/val) proc/val)))
-(define NO-CODE-KEY-FOUND (gensym))
-(define (code-ref! key val-default-proc)
+#;(define NO-CODE-KEY-FOUND (gensym))
+#;(define (code-ref! key val-default-proc)
   (let ([val (dict-ref (current-code-dict) key (λ()NO-CODE-KEY-FOUND))])
     (if (eq? val NO-CODE-KEY-FOUND)
         (let ([val (val-default-proc)])
@@ -97,7 +99,8 @@
         (parameterize ([current-code-dict (make-code-dict)])
           (let* ([code (code-write-value-aux val)]
                  ; generate all the let* bindings
-                 ; they should be in the right order
+                 ; they should be in the right order.
+                 ; (letrec is useless here)
                  [code (list 'let* (dict-map (current-code-dict)
                                              (λ(key val) val))
                              code)])
@@ -178,36 +181,77 @@
 (define (make-code-write-stub value)
   (new code-write-stub% [value value]))
 
-;(define-syntax-rule (code-write-parameterize ([obj val] ...) body ...)
-;  ( ; needs generate-temporaries....
-
-#| TESTS | #
-(define a%
-  (class (code-write%% object%) ; a% instances will be code-writable
-    (super-new)
-    (init [(_z z)]) ; order is not important
-    (init-field x [y 0]) ; with default values or not
-    (define z _z) ; works also with non-field attributes
-    ; but the external name must be the same as the internal one
-    (code-fields x y z) ; define code-writable fields 
+;; TESTS
+(module+ main
+  (define a%
+    (class (code-write%% object%) ; a% instances will be code-writable
+      (super-new)
+      (init [(_z z)]) ; order is not important
+      (init-field x [y 0]) ; with default values or not
+      (define z _z) ; works also with non-field attributes
+      ; but the external name must be the same as the internal one
+      (code-fields x y z) ; define code-writable fields 
     
-    ))
-
-(define b%
-  (class a% ; derives from a code-write<%> class
-    (super-new)
-    (init-field w)
-    (code-fields w) ; add code-writable fields to tha one already defined in the super class
-    (define/public (set-w _w) (set! w _w))
+      ))
+  (define b%
+    (class a% ; derives from a code-write<%> class
+      (super-new)
+      (init-field w)
+      (code-fields w) ; add code-writable fields to tha one already defined in the super class
+      (define/public (set-w _w) (set! w _w))
     
-    ))
-      
+      ))
+  
 
-(define a1 (new a% [x 1][y 2][z 3]))
-(define a2 (new a% [x 10][y 20][z a1]))
-(define b1 (new b% [x 6][y 7][z 8] [w 12]))
-; test mutation + recurrent code-write :
-(send b1 set-w (list 5 a2))
-; write the code that defines b1 :
-(code-write-value b1 #t)
-;|#
+  #;(define a1 (new a% [x 1][y 2][z 3]))
+  #;(define a2 (new a% [x 10][y 20][z a1]))
+  #;(define b1 (new b% [x 6][y 7][z 8] [w 12]))
+  ; test mutation + recurrent code-write :
+  #;(send b1 set-w (list 5 a2))
+  ; write the code that defines b1 :
+  #;(code-write-value b1 #t)
+
+  (define-namespace-anchor nsa)
+  (define ns (namespace-anchor->namespace nsa))
+  (define new-b1 (eval '(new object%) ns))
+  new-b1
+  )
+
+#;(module+ main
+  (define a%
+    (class (code-write%% object%) ; a% instances will be code-writable
+      (super-new)
+      (init [(_z z)]) ; order is not important
+      (init-field x [y 0]) ; with default values or not
+      (define z _z) ; works also with non-field attributes
+      ; but the external name must be the same as the internal one
+      (code-fields x y z) ; define code-writable fields 
+    
+      ))
+
+  (define b%
+    (class a% ; derives from a code-write<%> class
+      (super-new)
+      (init-field w)
+      (code-fields w) ; add code-writable fields to tha one already defined in the super class
+      (define/public (set-w _w) (set! w _w))
+    
+      ))
+
+  (define a1 (new a% [x 1][y 2][z 3]))
+  (define a2 (new a% [x 10][y 20][z a1]))
+  (define b1 (new b% [x 6][y 7][z 8] [w 12]))
+  ; test mutation + recurrent code-write :
+  (send b1 set-w (list 5 a2))
+  ; write the code that defines b1 :
+  (code-write-value b1 #t)
+  
+  (define b1-code (code-write-value b1 #f))
+  (define-namespace-anchor nsa)
+  (define ns (namespace-anchor->namespace nsa))
+  (define new-b1 (eval '(make-object object%) #;'a% #;'(new a% [x 1][y 2][z 3]) #;b1-code ns))
+  b1
+  new-b1
+  ;; todo: evaluate the generated code and test against the initial specification
+  
+  )
