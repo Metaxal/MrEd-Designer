@@ -22,7 +22,9 @@
                                    'single)
                       (prop:one-of '(vertical-label horizontal-label)
                                    'horizontal-label)
-                      (prop:some-of '(deleted) '()))
+                      (prop:some-of '(deleted variable-columns column-headers
+                                              clickable-headers reorderable-headers)
+                                    '()))
           (λ(l)(list* (first l) (second l) (third l))))]
   [font (font-values)]
   [selection (prop:false-or-number 0)]
@@ -31,6 +33,8 @@
   [horiz-margin 2]
   [min-width 0]
   [min-height 0]
-  [stretchable-width #f]
-  [stretchable-height #f]
+  [stretchable-width #t]
+  [stretchable-height #t]
+  [columns '("Column")]
+  [column-order #f] ; Should be #f or list of numbers
   ))
