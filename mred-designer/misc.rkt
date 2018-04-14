@@ -44,7 +44,7 @@
 
 ;; Current version of MrEd Designer
 (define/provide application-version-maj 3)
-(define/provide application-version-min 16)
+(define/provide application-version-min 17)
 (define/provide application-version (format "~a.~a" application-version-maj application-version-min))
 (define/provide application-name "MrEd Designer")
 (define/provide application-name-version
