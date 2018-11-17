@@ -220,7 +220,7 @@
     (and v #t) ; this is no mistake (I want it to write #t)
     (or v 0)
     )
-   (λ(l)(and (first l) (second l)))
+   (lambda (l) (and (first l) (second l)))
    ))
 
 (define/provide (prop:false-or-string v)
@@ -229,5 +229,5 @@
     (and v #t) ; this is no mistake (I want it to write #t)
     (or v "")
     )
-   (λ(l)(and (first l) (second l)))
+   (lambda (l) (and (first l) (second l)))
    ))

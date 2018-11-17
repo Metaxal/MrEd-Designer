@@ -25,7 +25,7 @@
                       (prop:some-of '(deleted variable-columns column-headers
                                               clickable-headers reorderable-headers)
                                     '()))
-          (λ(l)(list* (first l) (second l) (third l))))]
+          (lambda (l) (list* (first l) (second l) (third l))))]
   [font (font-values)]
   [selection (prop:false-or-number 0)]
   [enabled #t]
