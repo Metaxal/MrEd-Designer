@@ -129,6 +129,12 @@
     
     (inherit get-selected select delete-item)
 
+    (define/public (open-rec hlc)
+      (let loop ([hlc hlc])
+        (when (is-a? hlc hierarchical-list-compound-item%)
+          (send hlc open)
+          (for-each loop (send hlc get-items)))))
+
     ;; Add wrapper around add-child to bracket changes with begin/end edit/container sequences - kdh 2012-02-29
     ;; If parent is #f, then the parent is the hierarchy-list itself.
     ;; parent-mid: (or/c 'selected 'none mred-id%?)
@@ -136,13 +142,18 @@
       (debug-printf "add-children: ~a parent:~a\n" mid parent-mid)
       (send hierarchy-frame begin-container-sequence)
       (send (send this get-editor) begin-edit-sequence #f)
-      (add-child mid
-                 (case parent-mid
+      (define hl-parent
+        (case parent-mid
                    [(selected) (or (get-selected) this)]
                    [(none) this]
                    [else (get-mred-id-item parent-mid)]))
+      (define new-hlc (add-child mid hl-parent))
       (send (send this get-editor) end-edit-sequence)
       (send hierarchy-frame end-container-sequence)
+      (when (is-a? hl-parent hierarchical-list-compound-item%)
+        (send hl-parent open))
+      (open-rec new-hlc)
+      ; Recursively open the children
       (debug-printf "add-children: exit\n"))
 
     ;; Recursively adds a child and its children to the given hlist parent.
@@ -157,7 +168,8 @@
       (add-mred-id-item mid new-hlc)
       ; Open the list only after adding all the children - kdh 2012-02-29
       ; This seems buggy currently. Not sure why. Upstream?
-      #;(send new-hlc open))
+      #;(send new-hlc open)
+      new-hlc)
     
     (define/override (on-select i)
       (on-select-callback (send i user-data)))
