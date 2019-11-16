@@ -76,10 +76,8 @@
     (when new-mred-id
 ;      (printf "creating widget from plugin ~a~n" (send plugin get-type))
       (project-changed! new-mred-id)
-      ; Call add-children wrapper for add-child - kdh 2012-02-29      
-      (if mred-parent
-          (send hierarchy-widget add-children new-mred-id)
-          (send hierarchy-widget add-children new-mred-id #f)))
+      ; Call add-children wrapper for add-child - kdh 2012-02-29
+      (send hierarchy-widget add-children new-mred-id (or mred-parent 'selected)))
 
     (debug-printf "controller-replace-current-widget: exit~n")
 
@@ -124,7 +122,7 @@
 (define (load-mred file parent-mid)
   (when file
     (debug-printf "load-mred: load file ~a~n" file)
-    (begin-busy-cursor)
+    (begin-busy-cursor) ;; TODO: Where is the end?
     (let* ([tlmid (and parent-mid (send parent-mid get-top-mred-parent))]
            [all-ids (if tlmid (map-send get-id (get-all-children tlmid)) '())]
            [all-ids-str (map ->string all-ids)]
@@ -148,8 +146,7 @@
                )
              ; create a hierarchy with these mred-ids:
              ; Call add-children wrapper for add-child - kdh 2012-02-29      
-             (send hierarchy-widget add-children (first mids)
-                   (if parent-mid (send hierarchy-widget get-selected) #f))
+             (send hierarchy-widget add-children (first mids) (or parent-mid 'none))
 
              (debug-printf "load-mred: exit~n")
 

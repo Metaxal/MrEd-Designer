@@ -125,46 +125,39 @@
     (define (replace-mred-id-item mid new-it)
       (debug-printf "replace-mred-id-item: ~a ~a\n" mid new-it)
       ; WATCH OUT! prevents from Garbage Collecting if entries are not deleted!
-      (hash-set! mred-id-items mid new-it)
-      )
+      (hash-set! mred-id-items mid new-it))
     
     (inherit get-selected select delete-item)
 
-    ; Add wrapper around add-child to bracket changes with begin/end edit/container sequences - kdh 2012-02-29
-    (define/public (add-children mid [parent (get-selected)])
-      (debug-printf "add-children: ~a ~a\n" mid parent)
+    ;; Add wrapper around add-child to bracket changes with begin/end edit/container sequences - kdh 2012-02-29
+    ;; If parent is #f, then the parent is the hierarchy-list itself.
+    ;; parent-mid: (or/c 'selected 'none mred-id%?)
+    (define/public (add-children mid [parent-mid 'selected])
+      (debug-printf "add-children: ~a parent:~a\n" mid parent-mid)
       (send hierarchy-frame begin-container-sequence)
       (send (send this get-editor) begin-edit-sequence #f)
-      (add-child mid parent)
+      (add-child mid
+                 (case parent-mid
+                   [(selected) (or (get-selected) this)]
+                   [(none) this]
+                   [else (get-mred-id-item parent-mid)]))
       (send (send this get-editor) end-edit-sequence)
       (send hierarchy-frame end-container-sequence)
-      (debug-printf "add-children: exit\n")
-      )
+      (debug-printf "add-children: exit\n"))
 
     ;; Recursively adds a child and its children to the given hlist parent.
-    ;; If parent is #f, then the parent is the hierarchy-list itself.
-    ; Alter add-child to enforce access through add-children wrapper - kdh 2012-02-29
-    (define (add-child mid parent)
-      (let* ([parent (or parent this)]
-             [mred-children (send mid get-mred-children)]
-             
-             [it (if #t; ALWAYS! (much simpler...) ;(is-a? (send mid get-widget) area-container<%>)
-                    ; add compound
-                    (let ([new-hlc (send parent new-list)])
-                      ; if the mred-id has children, add them too:
-                      (unless (empty? mred-children)
-                        (for-each (λ(c)(add-child c new-hlc)) mred-children))
-                      ; Open the list only after adding all the children - kdh 2012-02-29
-                      (send new-hlc open)
-                      ; return the hlist:
-                      new-hlc)
-                    ; else simply add an item:
-                    (send parent new-item)
-                    )]
-             )
-        (add-mred-id-item mid it)
-        )
-      )
+    ;; Alter add-child to enforce access through add-children wrapper - kdh 2012-02-29
+    (define (add-child mid hl-parent)
+      (debug-printf "hl-parent: ~a\n" hl-parent)
+      (define mred-children (send mid get-mred-children))
+      (define new-hlc (send hl-parent new-list))
+      ; if the mred-id has children, add them too:
+      (for ([c (in-list mred-children)])
+        (add-child c new-hlc))
+      (add-mred-id-item mid new-hlc)
+      ; Open the list only after adding all the children - kdh 2012-02-29
+      ; This seems buggy currently. Not sure why. Upstream?
+      #;(send new-hlc open))
     
     (define/override (on-select i)
       (on-select-callback (send i user-data)))
@@ -205,7 +198,7 @@
       (let* ([l (send hlist get-items)]
              [l2 (changer l)])
         ; remove all items (yes, hierarchical-list% lacks many useful features...)
-        (map (λ (it) (send hlist delete-item it)) l)
+        (for-each (λ (it) (send hlist delete-item it)) l)
         
         (for-each (λ (x) (let ([new-x (if (is-a? x hierarchical-list-compound-item<%>)
                                           (send hlist new-list)
@@ -219,11 +212,8 @@
                              ; Open the new item only after adding all children - kdh 2012-02-29 
                              (if (send x is-open?)
                                  (send new-x open)
-                                 (send new-x close))
-                             )
-                           ))
-                  l2)
-        )
+                                 (send new-x close)))))
+                  l2))
       (send (send this get-editor) end-edit-sequence)
       (send hierarchy-frame end-container-sequence)
       (debug-printf "change-children: exit\n")
