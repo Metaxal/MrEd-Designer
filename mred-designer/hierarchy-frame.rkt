@@ -112,7 +112,8 @@
     
     (define mred-id-items (make-hash))
     
-    (define (get-mred-id-item mid) 
+    (define (get-mred-id-item mid)
+      ; Is that redundant with find-parent?
       (hash-ref mred-id-items mid #f))
     
     (define (add-mred-id-item mid it) 
@@ -129,6 +130,7 @@
     
     (inherit get-selected select delete-item)
 
+    ;; Recursively opens all items in the hierarchical-list-compound-item hlc
     (define/public (open-rec hlc)
       (let loop ([hlc hlc])
         (when (is-a? hlc hierarchical-list-compound-item%)
@@ -167,7 +169,8 @@
         (add-child c new-hlc))
       (add-mred-id-item mid new-hlc)
       ; Open the list only after adding all the children - kdh 2012-02-29
-      ; This seems buggy currently. Not sure why. Upstream?
+      ; Opening here leads to a bug:
+      ; https://github.com/Metaxal/MrEd-Designer/issues/7
       #;(send new-hlc open)
       new-hlc)
     
@@ -199,8 +202,7 @@
         (if it-parent
             (send it-parent delete-item it)
             (printf "ERROR: it not found!\n"))
-        (remove-mred-id-item mid)
-        ))
+        (remove-mred-id-item mid)))
     
     (define/public (change-children hlist [changer (λ (l) l)])
       ; Bracket changes to hierarchy list with begin/end edit/container sequences - kdh 2012-02-29
@@ -222,7 +224,7 @@
                            (when (is-a? x hierarchical-list-compound-item<%>)
                              (change-children new-x (λ _ (send x get-items)))
                              ; Open the new item only after adding all children - kdh 2012-02-29 
-                             (if (send x is-open?)
+                             #;(if (send x is-open?)
                                  (send new-x open)
                                  (send new-x close)))))
                   l2))
@@ -236,16 +238,22 @@
       (debug-printf "move-item:\n")
       (send hierarchy-frame begin-container-sequence)
       (send (send this get-editor) begin-edit-sequence #f)
-      (let* ([mid (send it user-data)]
-             [it-parent (find-parent it)])
-        (when it-parent
-          (change-children it-parent
-                           (λ(l)(list-mover l it))))
-        (set-selected-mred-id mid)
-        )
+      (define mid (send it user-data))
+      (define it-parent (find-parent it))
+      (when it-parent
+        (change-children it-parent
+                         (λ(l)(list-mover l it))))
+      (set-selected-mred-id mid)
       (send (send this get-editor) end-edit-sequence)
       (send hierarchy-frame end-container-sequence)
-      )
+      ; This must be done *after* changing the whole hierarchy otherwise it may raise an exception
+      ; on the following example:
+      ; https://github.com/Metaxal/MrEd-Designer/issues/8
+      ; Add Frame; Add TextField; Add VerticalPane; Add Choice (below VerticalPane);
+      ; Cut Choice; Paste Choice into VerticalPane (still good, no bug); Arrow Up the VerticalPane.
+      ; Bug.
+      (when it-parent
+        (open-rec it-parent)))
     
     (define/public (move-up)
       (move-item (get-selected) list-move-left))
