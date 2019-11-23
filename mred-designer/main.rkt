@@ -134,8 +134,7 @@
     [(regexp ".*\\.med$") 
      (printf "loading project ~a:" arg)
      (set! no-project-loaded #f)
-     (load-project (string->path arg))
-     ]
+     (load-project (string->path arg))]
     [else (printf "Don't know what to do with command line argument: ~a\n" arg)]))
 
 (when no-project-loaded

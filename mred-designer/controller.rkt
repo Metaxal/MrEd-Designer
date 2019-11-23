@@ -374,7 +374,7 @@
     (let* ([project-mid (send mid get-top-mred-parent)]
            [base-dir (send project-mid get-project-dir)]
            [dft-file (string-append (->string (send project-mid get-id)) ".rkt")]
-           [file (if ask-user?
+           [file (if (or ask-user? (not base-dir))
                      (choose-code-file dft-file base-dir toolbox-frame)
                      (path->complete-path dft-file base-dir))]
            )
